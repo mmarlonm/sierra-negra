@@ -17,48 +17,48 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? 'bg-white/95 backdrop-blur-lg shadow-md py-4' 
-        : 'bg-transparent py-6'
+        ? 'bg-white/95 backdrop-blur-lg shadow-md py-4 text-[#2D5016]' 
+        : 'bg-black/40 backdrop-blur-sm text-white py-6'
     }`}>
       <nav className="container-custom flex items-center justify-between">
-        <a href="#inicio" className="text-2xl font-bold text-gradient">
+        <a href="#inicio" className={`${isScrolled ? 'text-2xl font-bold text-[#2D5016]' : 'text-2xl font-bold text-white drop-shadow-lg'}`}>
           🌲 Sierra Negra
         </a>
         <ul className="hidden md:flex items-center gap-8">
           <li>
-            <a href="#inicio" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#inicio" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Inicio
             </a>
           </li>
           <li>
-            <a href="#lugares" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#lugares" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Lugares
             </a>
           </li>
           <li>
-            <a href="#rutas" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#rutas" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Rutas
             </a>
           </li>
           <li>
-            <a href="#galeria" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#galeria" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Galería
             </a>
           </li>
           <li>
-            <a href="#video" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#video" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Video
             </a>
           </li>
           <li>
-            <a href="#sugerencias" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]">
+            <a href="#sugerencias" className={`${isScrolled ? 'text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium text-[15px]' : 'text-white hover:text-gray-200 transition-colors font-medium text-[15px]'}`}>
               Sugerencias
             </a>
           </li>
         </ul>
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-[#2D5016] hover:bg-[#F5F1E8] rounded-lg transition-colors"
+          className={`${isScrolled ? 'md:hidden p-2 text-[#2D5016] hover:bg-[#F5F1E8] rounded-lg transition-colors' : 'md:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors'}`}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isMobileMenuOpen ? (
