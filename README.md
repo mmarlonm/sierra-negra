@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌲 Sierra Negra - Sitio Web
 
-## Getting Started
+Un sitio web moderno para dar a conocer la Sierra Negra, con diseño neumórfico y paleta de colores verdes.
 
-First, run the development server:
+## 🚀 Características
+
+- **Diseño Neumórfico**: Interfaz moderna con efectos de neumorfismo
+- **Paleta Verde**: Colores inspirados en la naturaleza
+- **Responsive**: Diseño adaptable a todos los dispositivos
+- **Secciones Incluidas**:
+  - Hero section con llamada a la acción
+  - Lugares mágicos para explorar
+  - Rutas de senderismo con diferentes niveles de dificultad
+  - Galería de paisajes
+  - Sugerencias y consejos para visitantes
+  - Footer informativo
+
+## 🛠️ Tecnologías
+
+- **Next.js 15**: Framework de React
+- **TypeScript**: Tipado estático
+- **Tailwind CSS**: Estilos utilitarios
+- **React**: Biblioteca de UI
+
+## 📦 Instalación
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Ejecutar en desarrollo
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Construir para producción
+npm run build
+
+# Iniciar en producción
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Estilos Neumórficos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El proyecto utiliza clases CSS personalizadas para efectos neumórficos:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `.neu-flat`: Sombra plana
+- `.neu-pressed`: Efecto presionado
+- `.neu-raised`: Efecto elevado
+- `.neu-card`: Tarjeta con efecto neumórfico
+- `.neu-button`: Botón con efecto neumórfico
 
-## Learn More
+## 📁 Estructura del Proyecto
 
-To learn more about Next.js, take a look at the following resources:
+```
+sierra-negra/
+├── app/
+│   ├── layout.tsx      # Layout principal
+│   ├── page.tsx        # Página principal
+│   └── globals.css     # Estilos globales
+├── components/
+│   ├── Header.tsx      # Navegación
+│   ├── Hero.tsx        # Sección hero
+│   ├── Places.tsx      # Lugares para visitar
+│   ├── Routes.tsx      # Rutas de senderismo
+│   ├── Gallery.tsx     # Galería de imágenes
+│   ├── Suggestions.tsx # Consejos y sugerencias
+│   └── Footer.tsx      # Pie de página
+└── public/
+    └── images/         # Imágenes del sitio
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🖼️ Agregar Imágenes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para agregar imágenes reales:
 
-## Deploy on Vercel
+1. Coloca las imágenes en `public/images/places/`
+2. Actualiza las rutas en los componentes correspondientes
+3. Los nombres sugeridos:
+   - `mirador.jpg`
+   - `cascada.jpg`
+   - `bosque.jpg`
+   - `lago.jpg`
+   - `cueva.jpg`
+   - `pico.jpg`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 Próximos Pasos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Agregar imágenes reales de la Sierra Negra
+- [ ] Implementar sistema de reservas
+- [ ] Agregar mapa interactivo
+- [ ] Integrar formulario de contacto
+- [ ] Agregar blog de experiencias
+
+## 📝 Licencia
+
+Este proyecto es de código abierto y está disponible bajo la licencia MIT.
