@@ -112,9 +112,9 @@ export default function Hero() {
               >
                 <div className="item-overlay"></div>
                 <div className="content">
-                  <div className="name">{slide.name}</div>
-                  <div className="des">{slide.description}</div>
-                  <a href={slide.link} className="btn-slide">
+                  <h1 className="name">{slide.name}</h1>
+                  <p className="des">{slide.description}</p>
+                  <a href={slide.link} className="btn-slide" aria-label={`Explorar ${slide.name}`}>
                     Explorar
                   </a>
                 </div>
@@ -123,7 +123,7 @@ export default function Hero() {
           </div>
 
           <div className="button">
-            <button className="prev" ref={prevRef}>
+            <button className="prev" ref={prevRef} aria-label="Slide anterior">
               <FaArrowLeft />
             </button>
 
@@ -133,7 +133,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <button className="next" ref={nextRef}>
+            <button className="next" ref={nextRef} aria-label="Slide siguiente">
               <FaArrowRight />
             </button>
           </div>
