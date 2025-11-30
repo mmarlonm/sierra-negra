@@ -8,42 +8,42 @@ const slides = [
     id: 1,
     name: 'Sierra Negra',
     description: 'Un paraíso natural lleno de paisajes impresionantes y experiencias inolvidables.',
-    image: '/images/hero/crucero_2.jpeg',
+    image: '/sierra-negra/images/hero/crucero_2.jpeg',
     link: '#lugares'
   },
   {
     id: 2,
     name: 'El Tepeyac',
     description: 'Observa uno de los rios mas importantes de la sierra negra.',
-    image: '/images/hero/tepeyac.jpg',
+    image: '/sierra-negra/images/hero/tepeyac.jpg',
     link: '#lugares'
   },
   {
     id: 3,
     name: 'Zoquitlan',
     description: 'Un lugar lleno de historia y tradiciones que te harán sentir parte de la cultura local.',
-    image: '/images/hero/zoquitlan.webp',
+    image: '/sierra-negra/images/hero/zoquitlan.webp',
     link: '#lugares'
   },
   {
     id: 4,
     name: 'San Juan Cuautla',
     description: 'Camina entre árboles centenarios y descubre la magia de la naturaleza virgen.',
-    image: '/images/hero/san_juan_cuautla.jpg',
+    image: '/sierra-negra/images/hero/san_juan_cuautla.jpg',
     link: '#rutas'
   },
   {
     id: 5,
     name: 'Cacaloc Zoquitlan',
     description: 'El punto más alto de la sierra. Una caminata desafiante con recompensas increíbles.',
-    image: '/images/hero/cacaloc_zoquitlan.jpg',
+    image: '/sierra-negra/images/hero/cacaloc_zoquitlan.jpg',
     link: '#rutas'
   },
   {
     id: 6,
     name: 'San Miguel Eloxochitlan',
     description: 'Un lugar de mucha naturaleza y paz, ideal para desconectarte del mundo y reconectar contigo mismo.',
-    image: '/images/hero/san_miguel_eloxochitlan.jpg',
+    image: '/sierra-negra/images/hero/san_miguel_eloxochitlan.jpg',
     link: '#galeria'
   }
 ];
