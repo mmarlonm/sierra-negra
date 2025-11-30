@@ -7,49 +7,49 @@ const galleryImages = [
   { 
     id: 1, 
     title: 'Crucero', 
-    image: '/images/gallery/crucero.jpeg',
+    image: '/sierra-negra/images/gallery/crucero.jpeg',
     description: 'Paisaje del crucero en la Sierra Negra'
   },
   { 
     id: 2, 
     title: 'Crucero 2', 
-    image: '/images/gallery/crucero_2.jpeg',
+    image: '/sierra-negra/images/gallery/crucero_2.jpeg',
     description: 'Vista panorámica del crucero'
   },
   { 
     id: 3, 
     title: 'Crucero 3', 
-    image: '/images/gallery/crucero_3.jpeg',
+    image: '/sierra-negra/images/gallery/crucero_3.jpeg',
     description: 'Naturaleza del crucero'
   },
   { 
     id: 4, 
     title: 'El Tepeyac', 
-    image: '/images/gallery/tepeyac.jpg',
+    image: '/sierra-negra/images/gallery/tepeyac.jpg',
     description: 'Uno de los ríos más importantes de la Sierra Negra'
   },
   { 
     id: 5, 
     title: 'Zoquitlan', 
-    image: '/images/gallery/zoquitlan.webp',
+    image: '/sierra-negra/images/gallery/zoquitlan.webp',
     description: 'Lugar lleno de historia y tradiciones'
   },
   { 
     id: 6, 
     title: 'San Juan Cuautla', 
-    image: '/images/gallery/san_juan_cuautla.jpg',
+    image: '/sierra-negra/images/gallery/san_juan_cuautla.jpg',
     description: 'Naturaleza virgen y paisajes impresionantes'
   },
   { 
     id: 7, 
     title: 'Cacaloc Zoquitlan', 
-    image: '/images/gallery/cacaloc_zoquitlan.jpg',
+    image: '/sierra-negra/images/gallery/cacaloc_zoquitlan.jpg',
     description: 'Punto más alto de la sierra con vistas increíbles'
   },
   { 
     id: 8, 
     title: 'San Miguel Eloxochitlan', 
-    image: '/images/gallery/san_miguel_eloxochitlan.jpg',
+    image: '/sierra-negra/images/gallery/san_miguel_eloxochitlan.jpg',
     description: 'Lugar de mucha naturaleza y paz'
   }
 ];

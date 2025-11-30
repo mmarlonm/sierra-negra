@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "export": "next build",
     "deploy": "npm run build && gh-pages -d out"
   },
   "dependencies": {

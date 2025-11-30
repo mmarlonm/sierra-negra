@@ -1,26 +1,23 @@
 # 🌲 Sierra Negra - Sitio Web
 
-Un sitio web moderno para dar a conocer la Sierra Negra, con diseño neumórfico y paleta de colores verdes.
+Un sitio web moderno para dar a conocer la Sierra Negra, con diseño moderno y paleta de colores naturales.
 
 ## 🚀 Características
 
-- **Diseño Neumórfico**: Interfaz moderna con efectos de neumorfismo
-- **Paleta Verde**: Colores inspirados en la naturaleza
+- **Diseño Moderno**: Interfaz limpia y contemporánea
+- **Paleta Natural**: Colores inspirados en la naturaleza
 - **Responsive**: Diseño adaptable a todos los dispositivos
-- **Secciones Incluidas**:
-  - Hero section con llamada a la acción
-  - Lugares mágicos para explorar
-  - Rutas de senderismo con diferentes niveles de dificultad
-  - Galería de paisajes
-  - Sugerencias y consejos para visitantes
-  - Footer informativo
+- **Slider Hero**: Carrusel interactivo con imágenes
+- **Galería de Imágenes**: Visualización de paisajes
+- **Rutas de Senderismo**: Información sobre rutas disponibles
+- **Sugerencias**: Consejos para visitantes
 
 ## 🛠️ Tecnologías
 
-- **Next.js 15**: Framework de React
+- **Next.js 16**: Framework de React
 - **TypeScript**: Tipado estático
 - **Tailwind CSS**: Estilos utilitarios
-- **React**: Biblioteca de UI
+- **React Icons**: Iconos
 
 ## 📦 Instalación
 
@@ -34,19 +31,26 @@ npm run dev
 # Construir para producción
 npm run build
 
-# Iniciar en producción
-npm start
+# Desplegar a GitHub Pages
+npm run deploy
 ```
 
-## 🎨 Estilos Neumórficos
+## 🌐 Despliegue en GitHub Pages
 
-El proyecto utiliza clases CSS personalizadas para efectos neumórficos:
+El proyecto está configurado para desplegarse automáticamente en GitHub Pages usando GitHub Actions.
 
-- `.neu-flat`: Sombra plana
-- `.neu-pressed`: Efecto presionado
-- `.neu-raised`: Efecto elevado
-- `.neu-card`: Tarjeta con efecto neumórfico
-- `.neu-button`: Botón con efecto neumórfico
+### Configuración Manual
+
+1. Ve a la configuración del repositorio en GitHub
+2. Navega a **Pages** en el menú lateral
+3. En **Source**, selecciona **GitHub Actions**
+
+### Despliegue Manual
+
+```bash
+npm run build
+npm run deploy
+```
 
 ## 📁 Estructura del Proyecto
 
@@ -58,33 +62,31 @@ sierra-negra/
 │   └── globals.css     # Estilos globales
 ├── components/
 │   ├── Header.tsx      # Navegación
-│   ├── Hero.tsx        # Sección hero
+│   ├── Hero.tsx        # Slider hero
 │   ├── Places.tsx      # Lugares para visitar
 │   ├── Routes.tsx      # Rutas de senderismo
 │   ├── Gallery.tsx     # Galería de imágenes
+│   ├── VideoSection.tsx # Sección de video
 │   ├── Suggestions.tsx # Consejos y sugerencias
-│   └── Footer.tsx      # Pie de página
-└── public/
-    └── images/         # Imágenes del sitio
+│   ├── Footer.tsx      # Pie de página
+│   ├── hero.css        # Estilos del hero
+│   └── gallery.css      # Estilos de la galería
+├── public/
+│   └── images/         # Imágenes del sitio
+└── styles/
+    └── components/     # Estilos de componentes
 ```
 
 ## 🖼️ Agregar Imágenes
 
-Para agregar imágenes reales:
-
-1. Coloca las imágenes en `public/images/places/`
-2. Actualiza las rutas en los componentes correspondientes
-3. Los nombres sugeridos:
-   - `mirador.jpg`
-   - `cascada.jpg`
-   - `bosque.jpg`
-   - `lago.jpg`
-   - `cueva.jpg`
-   - `pico.jpg`
+Las imágenes se encuentran en:
+- Hero: `public/images/hero/`
+- Galería: `public/images/gallery/`
+- Lugares: `public/images/places/`
 
 ## 🎯 Próximos Pasos
 
-- [ ] Agregar imágenes reales de la Sierra Negra
+- [ ] Agregar más imágenes de la Sierra Negra
 - [ ] Implementar sistema de reservas
 - [ ] Agregar mapa interactivo
 - [ ] Integrar formulario de contacto
@@ -93,3 +95,8 @@ Para agregar imágenes reales:
 ## 📝 Licencia
 
 Este proyecto es de código abierto y está disponible bajo la licencia MIT.
+
+## 🔗 Enlaces
+
+- [GitHub Pages](https://mmarlonm.github.io/sierra-negra/)
+- [Repositorio](https://github.com/mmarlonm/sierra-negra)
