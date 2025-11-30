@@ -5,8 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: process.env.NODE_ENV === 'production' ? "/sierra-negra" : "",
-  assetPrefix: process.env.NODE_ENV === 'production' ? "/sierra-negra/" : "",
+  // Siempre usar basePath para GitHub Pages
+  basePath: "/sierra-negra",
+  assetPrefix: "/sierra-negra/",
 };
 
 module.exports = nextConfig;

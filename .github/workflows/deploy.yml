@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -35,6 +36,9 @@ jobs:
         env:
           NODE_ENV: production
 
+      - name: Create .nojekyll file
+        run: touch out/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -53,4 +57,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
