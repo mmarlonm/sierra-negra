@@ -9,7 +9,7 @@ const slides = [
     id: 1,
     name: 'Sierra Negra',
     description: 'Un paraíso natural lleno de paisajes impresionantes y experiencias inolvidables.',
-    image: '/sierra-negra/images/hero/crucero_2.jpeg',
+    image: '/sierra-negra/images/hero/crucero_2.png',
     link: '#lugares'
   },
   {

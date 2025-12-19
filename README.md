@@ -92,6 +92,32 @@ Las imágenes se encuentran en:
 - [ ] Integrar formulario de contacto
 - [ ] Agregar blog de experiencias
 
+## 💳 Integración de pagos (Stripe)
+
+Para habilitar pagos reales con Stripe debes:
+
+1. Instalar la librería oficial de Stripe en el proyecto:
+
+```bash
+npm install stripe
+```
+
+2. Crear un archivo `.env.local` en la raíz del proyecto con las claves:
+
+```
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_PUBLISHABLE_KEY=pk_test_...
+STRIPE_CURRENCY=mxn
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+3. En este repositorio añadí una ruta API (`/app/api/create-checkout-session`) que crea una sesión de Stripe Checkout. El flujo en el frontend redirige al checkout de Stripe.
+
+Notas:
+- El proyecto estaba configurado como export estático; lo ajusté para permitir rutas de servidor (API) en `next.config.ts`.
+- Para pruebas locales asegúrate de ejecutar `npm run dev` y tener las variables de entorno configuradas.
+
+
 ## 📝 Licencia
 
 Este proyecto es de código abierto y está disponible bajo la licencia MIT.

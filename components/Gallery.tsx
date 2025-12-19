@@ -7,13 +7,13 @@ const galleryImages = [
   { 
     id: 1, 
     title: 'Crucero', 
-    image: '/sierra-negra/images/gallery/crucero.jpeg',
+    image: '/sierra-negra/images/gallery/crucero.png',
     description: 'Paisaje del crucero en la Sierra Negra'
   },
   { 
     id: 2, 
     title: 'Crucero 2', 
-    image: '/sierra-negra/images/gallery/crucero_2.jpeg',
+    image: '/sierra-negra/images/gallery/crucero_2.png',
     description: 'Vista panorámica del crucero'
   },
   { 

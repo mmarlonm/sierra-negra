@@ -24,6 +24,7 @@
   --text-primary: #1A1A1A;
   --text-secondary: #4A4A4A;
   --text-light: #6B6B6B;
+  --header-height: 112px;
 }
 
 @theme inline {
@@ -211,6 +212,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Ensure anchor targets are visible below fixed header */
+html {
+  scroll-padding-top: var(--header-height);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 12px;
@@ -292,3 +298,6 @@ html {
     padding: 0 48px;
   }
 }
+
+/* Import styles for shop UX */
+@import "../styles/components/shop.css";

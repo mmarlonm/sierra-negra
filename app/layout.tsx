@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "../components/CartContext";
+import Header from "../components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,9 +14,15 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Sierra Negra - Descubre la Naturaleza",
-  description: "Explora los paisajes, rutas y lugares mágicos de la Sierra Negra. Una experiencia única en la naturaleza.",
+export const metadata = {
+  title: "Sierra Negra – Turismo, rutas y lugares mágicos",
+  description: "Explora la Sierra Negra: rutas, lugares naturales, cultura local y destinos impresionantes en Puebla.",
+  keywords: ["sierra negra", "turismo puebla", "rutas", "senderismo", "lugares naturales"],
+  openGraph: {
+    title: "Sierra Negra – Naturaleza y Turismo",
+    description: "Descubre los lugares más impresionantes de la Sierra Negra.",
+    images: ["https://tusitio.com/tuimagen.jpg"]
+  }
 };
 
 export default function RootLayout({
@@ -27,7 +35,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <CartProvider>
+          <Header />
+          <div style={{ paddingTop: 'var(--header-height)' }}>{children}</div>
+        </CartProvider>
       </body>
     </html>
   );
