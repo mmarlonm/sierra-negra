@@ -133,6 +133,19 @@ export default function Header() {
                 Sugerencias
               </Link>
             </li>
+            <li>
+              <Link href="/products" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium block py-2">
+                Tienda
+              </Link>
+            </li>
+            <li>
+              <Link href="/checkout" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium block py-2 flex items-center justify-between">
+                <span>🛒 Carrito</span>
+                {cart && cart.count > 0 && (
+                  <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2">{cart.count}</span>
+                )}
+              </Link>
+            </li>
           </ul>
         </div>
       )}
