@@ -32,3 +32,6 @@ Las imágenes se referencian desde la carpeta `public`, por ejemplo:
 />
 ```
 
+
+
+

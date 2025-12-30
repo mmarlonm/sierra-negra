@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[41035,["/sierra-negra/_next/static/chunks/547d8d2ca08f39ac.js","/sierra-negra/_next/static/chunks/d94bcfd07e25b552.js"],"default"]
+3:I[97367,["/sierra-negra/_next/static/chunks/ff1a16fafef87110.js","/sierra-negra/_next/static/chunks/247eb132b7f7b574.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"ufwKX9bSqm4NIFri1Kimb","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"pt-28 container-custom py-12","children":[["$","h1",null,{"className":"text-2xl font-bold mb-6","children":"Checkout"}],["$","$L2",null,{}],["$","div",null,{"className":"mt-6 text-sm text-gray-500","children":"Nota: para pagar con Stripe configura `STRIPE_SECRET_KEY` en `.env.local` y ejecuta `npm install stripe`."}]]}],[["$","script","script-0",{"src":"/sierra-negra/_next/static/chunks/d94bcfd07e25b552.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
