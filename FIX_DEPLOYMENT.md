@@ -77,3 +77,6 @@ assetPrefix: "/sierra-negra/",
 3. Espera 5-10 minutos después del despliegue para que GitHub actualice
 4. Limpia la caché del navegador (Ctrl+Shift+R o Cmd+Shift+R)
 
+
+
+

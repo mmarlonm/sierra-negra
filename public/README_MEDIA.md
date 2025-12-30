@@ -84,3 +84,6 @@ Agrega `sierra-negra-video.mp4` en `/public/videos/` con un video promocional de
 - El reproductor de video mostrará un mensaje si el archivo no existe
 - Usa imágenes optimizadas para mejorar el rendimiento del sitio
 
+
+
+

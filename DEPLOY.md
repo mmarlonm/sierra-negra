@@ -77,3 +77,6 @@ Asegúrate de que las rutas de las imágenes incluyan el `basePath`:
 - **GitHub Pages**: `https://[tu-usuario].github.io/sierra-negra/`
 - **Actions**: `https://github.com/[tu-usuario]/sierra-negra/actions`
 
+
+
+

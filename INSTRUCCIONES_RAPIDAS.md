@@ -51,3 +51,6 @@ Si después de 10 minutos aún ves el README:
 2. Comparte los logs del workflow de Actions
 3. Verifica que el nombre del repositorio sea exactamente `sierra-negra`
 
+
+
+

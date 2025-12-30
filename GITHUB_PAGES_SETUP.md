@@ -101,3 +101,6 @@ cat package.json
 - [Documentación de Next.js Export](https://nextjs.org/docs/app/building-your-application/deploying/static-exports)
 - [GitHub Actions](https://docs.github.com/en/actions)
 
+
+
+
