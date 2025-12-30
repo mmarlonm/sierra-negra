@@ -71,7 +71,10 @@ export const metadata: Metadata = {
     description:
       "Lugares turísticos, climas y vistas naturales de la Sierra Negra en Puebla.",
     images: ["https://mmarlonm.github.io/sierra-negra/og-sierra-negra.jpg"]
-  }
+  },
+  verification: {
+    google: "peMxbZbtOeIMz__rEDRgRcTyvwhKRpNlDgL5V6soK9I"
+  },
 };
 
 export default function RootLayout({
