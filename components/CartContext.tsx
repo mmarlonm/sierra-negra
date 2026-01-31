@@ -10,6 +10,7 @@ export type Product = {
   images?: string[]; // preferred: array of images for gallery
   category?: string;
   description?: string;
+  origin?: string;
 };
 
 type CartItem = Product & { quantity: number };
@@ -22,12 +23,15 @@ type CartContextType = {
   clearCart: () => void;
   count: number;
   total: number;
+  isCartOpen: boolean;
+  toggleCart: () => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -56,11 +60,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const clearCart = () => setItems([]);
 
+  const toggleCart = () => setIsCartOpen((prev) => !prev);
+
   const count = items.reduce((s, i) => s + i.quantity, 0);
   const total = items.reduce((s, i) => s + i.quantity * i.price, 0);
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, updateQty, clearCart, count, total }}>
+    <CartContext.Provider value={{ items, addItem, removeItem, updateQty, clearCart, count, total, isCartOpen, toggleCart }}>
       {children}
     </CartContext.Provider>
   );

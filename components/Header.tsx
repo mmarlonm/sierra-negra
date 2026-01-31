@@ -9,6 +9,13 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   let cart: any = null;
   try { cart = useCart(); } catch {}
+  
+  // Safe toggle
+  const handleCartClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (cart && cart.toggleCart) cart.toggleCart();
+  };
+
   const ref = useRef<HTMLElement | null>(null);
 
   // Measure header height and set CSS variable so page content can offset correctly
@@ -79,17 +86,17 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/checkout" className="relative">
-              <span className={`${isScrolled ? 'text-[#2D5016]' : 'text-white'} inline-flex items-center gap-2`}>🛒</span>
+            <button onClick={handleCartClick} className="relative group">
+              <span className={`${isScrolled ? 'text-[#2D5016]' : 'text-white'} inline-flex items-center gap-2 text-2xl group-hover:scale-110 transition-transform`}>🛒</span>
               {cart && cart.count > 0 && (
-                <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs rounded-full px-2">{cart.count}</span>
+                <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm animate-bounce-short">{cart.count}</span>
               )}
-            </Link>
+            </button>
           </li>
         </ul>
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className={`${isScrolled ? 'md:hidden p-2 text-[#2D5016] hover:bg-[#F5F1E8] rounded-lg transition-colors' : 'md:hidden p-2 text-white hover:bg-white/20 rounded-lg transition-colors'}`}
+          className={`${isScrolled ? 'md:hidden p-2 text-[#2D5016] hover:bg-[#F5F1E8] rounded-full transition-colors' : 'md:hidden p-2 text-white hover:bg-white/20 rounded-full transition-colors'}`}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isMobileMenuOpen ? (
@@ -139,12 +146,12 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/checkout" className="text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium block py-2 flex items-center justify-between">
+              <button onClick={(e) => { handleCartClick(e); setIsMobileMenuOpen(false); }} className="w-full text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium py-2 flex items-center justify-between text-left">
                 <span>🛒 Carrito</span>
                 {cart && cart.count > 0 && (
-                  <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2">{cart.count}</span>
+                  <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5">{cart.count}</span>
                 )}
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

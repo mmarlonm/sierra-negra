@@ -16,7 +16,7 @@ const places: Place[] = [
     id: 1,
     name: 'Mirador del Cielo',
     description: 'Una vista panorámica que te dejará sin aliento. Observa el amanecer desde las alturas.',
-    image: '/images/places/mirador.jpg',
+    image: 'https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80&w=800',
     features: ['Vista panorámica', 'Amanecer', 'Fotografía'],
     gradient: 'from-orange-400 via-pink-500 to-cyan-400'
   },
@@ -24,7 +24,7 @@ const places: Place[] = [
     id: 2,
     name: 'Cascada Esmeralda',
     description: 'Agua cristalina cayendo entre la vegetación exuberante. Un oasis de paz y frescura.',
-    image: '/images/places/cascada.jpg',
+    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&q=80&w=800',
     features: ['Cascada', 'Naturaleza', 'Relajación'],
     gradient: 'from-emerald-500 via-teal-400 to-green-500'
   },
@@ -32,7 +32,7 @@ const places: Place[] = [
     id: 3,
     name: 'Bosque Encantado',
     description: 'Camina entre árboles centenarios y descubre la magia de la naturaleza virgen.',
-    image: '/images/places/bosque.jpg',
+    image: 'https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&q=80&w=800',
     features: ['Senderismo', 'Flora', 'Aventura'],
     gradient: 'from-slate-700 via-green-600 to-emerald-700'
   },
@@ -40,7 +40,7 @@ const places: Place[] = [
     id: 4,
     name: 'Lago de los Cisnes',
     description: 'Un espejo de agua tranquilo donde la naturaleza se refleja en perfecta armonía.',
-    image: '/images/places/lago.jpg',
+    image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=800',
     features: ['Lago', 'Fauna', 'Paz'],
     gradient: 'from-blue-500 via-purple-500 to-cyan-400'
   },
@@ -48,7 +48,7 @@ const places: Place[] = [
     id: 5,
     name: 'Cueva de Cristales',
     description: 'Explora formaciones geológicas únicas en esta cueva natural llena de misterio.',
-    image: '/images/places/cueva.jpg',
+    image: 'https://images.unsplash.com/photo-1506452305024-9d3f02d1c9b5?auto=format&fit=crop&q=80&w=800',
     features: ['Geología', 'Exploración', 'Aventura'],
     gradient: 'from-amber-600 via-stone-500 to-green-600'
   },
@@ -56,7 +56,7 @@ const places: Place[] = [
     id: 6,
     name: 'Pico del Águila',
     description: 'El punto más alto de la sierra. Una caminata desafiante con recompensas increíbles.',
-    image: '/images/places/pico.jpg',
+    image: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&q=80&w=800',
     features: ['Montañismo', 'Vista', 'Desafío'],
     gradient: 'from-green-700 via-emerald-600 to-teal-500'
   }
@@ -86,19 +86,26 @@ export default function Places() {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="card-modern overflow-hidden h-full flex flex-col">
-                <div className="relative h-64 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${place.gradient} flex items-center justify-center`}>
-                    <div className="text-center text-white/90">
-                      <div className="text-6xl mb-2 transform group-hover:scale-110 transition-transform duration-500">🌲</div>
-                      <div className="text-sm font-semibold">Imagen de {place.name}</div>
+                  <div className="relative h-64 overflow-hidden group">
+                    <Image 
+                      src={place.image} 
+                      alt={place.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <div className="relative z-10 flex items-center gap-2 text-white/90 mb-2">
+                         <span className="text-xl">📍</span>
+                         <span className="font-medium text-sm">Sierra Negra, Puebla</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3 group-hover:text-[#2D5016] transition-colors">
-                    {place.name}
-                  </h3>
+                  <div className="p-6 flex-1 flex flex-col">
+                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3 group-hover:text-primary transition-colors">
+                      {place.name}
+                    </h3>
                   <p className="text-[#4A4A4A] mb-5 leading-relaxed text-[15px] flex-1">
                     {place.description}
                   </p>
@@ -112,12 +119,11 @@ export default function Places() {
                       </span>
                     ))}
                   </div>
-                  <a href={place.image} className="btn-primary w-full justify-center text-sm py-3">
-                    <span>Explorar</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </a>
+                  <div className="mt-auto pt-6 border-t border-gray-100">
+                    <button className="btn-secondary w-full justify-center py-2.5 text-sm !rounded-xl">
+                      <span>Ver Ubicación</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

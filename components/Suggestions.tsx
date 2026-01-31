@@ -106,24 +106,27 @@ export default function Suggestions() {
           {filteredSuggestions.map((suggestion, index) => (
             <div 
               key={suggestion.id} 
-              className="card-modern p-6 group"
+              className="card-modern relative overflow-hidden group hover:border-transparent"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-start gap-4">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${suggestion.color} flex items-center justify-center text-3xl shadow-lg transform group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${suggestion.color} opacity-10 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150 duration-700`}></div>
+              
+              <div className="p-8 relative z-10">
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${suggestion.color} flex items-center justify-center text-2xl shadow-md text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   {suggestion.icon}
                 </div>
-                <div className="flex-1">
-                  <span className="text-xs font-semibold text-[#2D5016] uppercase tracking-wide">
-                    {suggestion.category}
-                  </span>
-                  <h3 className="text-xl font-bold text-[#1A1A1A] mt-2 mb-3">
-                    {suggestion.title}
-                  </h3>
-                  <p className="text-[#4A4A4A] leading-relaxed text-[15px]">
-                    {suggestion.description}
-                  </p>
-                </div>
+                
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase mb-3 bg-gray-100 text-gray-600">
+                  {suggestion.category}
+                </span>
+
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-3 group-hover:text-primary transition-colors">
+                  {suggestion.title}
+                </h3>
+                
+                <p className="text-[#4A4A4A] leading-relaxed text-[15px]">
+                  {suggestion.description}
+                </p>
               </div>
             </div>
           ))}
