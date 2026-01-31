@@ -68,8 +68,8 @@ export default function Products() {
       price: 45.0,
       category: "Especias",
       description: "Canela recién cosechada, aroma intenso y dulce. Varitas largas seleccionadas a mano.",
-      image: "/sierra-negra/images/shop/canela.jpg",
-      images: ["/sierra-negra/images/shop/canela.jpg"],
+      image: "/sierra-negra/images/shop/canela-sierra.jpg",
+      images: ["/sierra-negra/images/shop/canela-sierra.jpg"],
       origin: "Eloxochitlán"
     },
     {
