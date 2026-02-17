@@ -25,163 +25,164 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
   const handleBuyNow = () => {
     onAdd(product, qty);
     onClose();
-    // Simulate navigation to checkout if applicable
     if (typeof window !== 'undefined') {
       window.location.hash = 'checkout';
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center p-0 md:p-6 lg:p-12 animate-fade-in">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-0 md:p-4 lg:p-8 animate-fade-in">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black/40 backdrop-blur-md cursor-pointer"
+        className="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer transition-opacity"
         onClick={onClose}
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-6xl bg-white shadow-2xl overflow-hidden flex flex-col md:flex-row h-full md:h-auto md:max-h-[90vh] md:rounded-[2.5rem] animate-fade-in-up transition-all">
+      <div className="relative w-full max-w-7xl bg-[#FDFCF9] shadow-2xl overflow-hidden flex flex-col md:flex-row h-full md:h-auto md:max-h-[95vh] md:rounded-[2rem] animate-fade-in-up transition-all border border-white/20">
         
-        {/* Close Button - Responsive Position */}
+        {/* Close Button */}
         <button 
           onClick={onClose} 
-          className="absolute top-4 right-4 md:top-8 md:right-8 z-30 text-gray-400 hover:text-[#2D5016] bg-white/90 backdrop-blur-sm rounded-full p-2.5 transition-all hover:bg-green-50 shadow-md md:shadow-none"
+          className="absolute top-4 right-4 z-30 text-gray-500 hover:text-black bg-white/80 backdrop-blur-md rounded-full p-3 transition-all hover:scale-110 shadow-lg"
+          aria-label="Cerrar"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
-        {/* Left Section: Visual Experience */}
-        <div className="w-full md:w-1/2 lg:w-[55%] bg-[#FDFDFB] flex flex-col relative">
-          <div className="flex-1 flex items-center justify-center p-8 md:p-12 overflow-hidden">
-            <div className="relative w-full aspect-square md:h-full flex items-center justify-center">
+        {/* Left Section: Immersive Image Experience */}
+        <div className="w-full md:w-[60%] lg:w-[65%] bg-[#F5F5F0] relative flex flex-col justify-center">
+          <div className="h-[50vh] md:h-[80vh] w-full relative flex items-center justify-center p-8 md:p-16">
+            <div className="relative w-full h-full max-w-2xl max-h-2xl">
               {images.length > 0 ? (
                 <Image 
                   src={images[index]} 
                   alt={product.name} 
                   fill
-                  className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-700 transform hover:scale-105" 
+                  className="object-contain drop-shadow-2xl transition-all duration-700 ease-out" 
+                  priority
                 />
               ) : (
-                <div className="text-gray-300 text-lg font-light tracking-widest uppercase italic">Sierra Negra</div>
+                <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-3xl text-gray-300 font-serif italic text-2xl">
+                  Sin imagen
+                </div>
               )}
             </div>
           </div>
           
-          {/* Enhanced Image Switcher (Horizontal Scroll for touch) */}
+          {/* Gallery Thumbnails - Floating at bottom center */}
           {images.length > 1 && (
-            <div className="p-6 md:p-8 flex justify-center gap-3 overflow-x-auto no-scrollbar">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 p-2 bg-white/50 backdrop-blur-md rounded-2xl shadow-sm border border-white/40">
               {images.map((src, i) => (
                 <button 
                   key={i} 
                   onClick={() => setIndex(i)} 
-                  className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${i === index ? 'border-[#2D5016] ring-4 ring-green-50 scale-105' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-105'}`}
+                  className={`relative w-14 h-14 rounded-xl overflow-hidden transition-all duration-300 ${i === index ? 'ring-2 ring-[#2D5016] scale-110 opacity-100' : 'opacity-60 hover:opacity-100 hover:scale-105'}`}
                 >
-                   <div className="relative w-full h-full">
-                     <Image src={src} alt="" fill className="object-cover" />
-                   </div>
+                   <Image src={src} alt="" fill className="object-cover" />
                 </button>
               ))}
             </div>
           )}
         </div>
 
-        {/* Right Section: Content & Actions */}
-        <div className="w-full md:w-1/2 lg:w-[45%] flex flex-col bg-white overflow-y-auto">
+        {/* Right Section: Product Details */}
+        <div className="w-full md:w-[40%] lg:w-[35%] bg-white flex flex-col border-l border-gray-100 overflow-y-auto md:overflow-visible relative">
           
-          {/* Content Padding Wrapper */}
-          <div className="p-8 md:p-12 pb-32 md:pb-12 space-y-8 h-full flex flex-col">
-            
+          <div className="flex-1 p-8 md:p-10 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
+            {/* Header Info */}
             <div className="space-y-4">
-              {/* Product Badging */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap items-center gap-3">
                 {product.origin && (
-                  <span className="bg-[#2D5016]/5 text-[#2D5016] text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-lg">
+                  <span className="px-3 py-1 rounded-full border border-[#2D5016]/20 text-[#2D5016] text-[10px] font-bold uppercase tracking-widest bg-green-50/50">
                     {product.origin}
                   </span>
                 )}
-                <span className="bg-orange-50 text-orange-700 text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-lg">
-                  Recién Cosechado
+                <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-800 text-[10px] font-bold uppercase tracking-widest">
+                  Fresco
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-serif font-semibold text-gray-900 leading-[1.1] tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-serif font-bold text-gray-900 leading-tight">
                 {product.name}
               </h1>
 
-              <div className="flex items-baseline gap-4">
-                <p className="text-3xl font-light text-gray-900">
+              <div className="flex items-baseline gap-4 pt-2">
+                <span className="text-4xl font-light text-gray-900 tracking-tight">
                   ${product.price.toFixed(2)}
-                </p>
-                <span className="text-sm text-gray-400 font-medium line-through">
-                  ${(product.price * 1.25).toFixed(2)}
+                </span>
+                <span className="text-lg text-gray-400 line-through font-light">
+                  ${(product.price * 1.2).toFixed(2)}
                 </span>
               </div>
             </div>
 
-            {/* Description Card */}
-            <div className="bg-[#F8F9F5] p-6 rounded-[1.5rem] border border-[#2D5016]/5 transition-all hover:bg-[#F2F4ED]">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2D5016] opacity-60 mb-3">Origen y Calidad</h4>
-              <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">
-                {product.description || "Este producto emblemático de la Sierra Negra es cultivado bajo procesos sustentables, capturando la esencia de nuestra tierra en cada bocado."}
+            <div className="w-full h-px bg-gray-100 my-2" />
+
+            {/* Description */}
+            <div className="space-y-4">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400">Descripción</h3>
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light font-[Outfit]">
+                {product.description || "Un producto excepcional cultivado con dedicación en las montañas de la Sierra Negra, trayendo lo mejor de la naturaleza directamente a tu hogar."}
               </p>
             </div>
 
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-[#2D5016]">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+            {/* Features Grid */}
+            <div className="grid grid-cols-2 gap-4 pt-4">
+              <div className="p-4 bg-gray-50 rounded-2xl">
+                <div className="w-8 h-8 text-[#2D5016] mb-2">
+                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
-                <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Envío</p>
-                  <p className="text-xs font-semibold text-gray-700">Gratis</p>
-                </div>
+                <p className="text-xs font-bold text-gray-900 uppercase">Entrega Rápida</p>
+                <p className="text-[10px] text-gray-500">En 24-48 horas</p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              <div className="p-4 bg-gray-50 rounded-2xl">
+                <div className="w-8 h-8 text-[#2D5016] mb-2">
+                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
-                <div>
-                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Calidad</p>
-                  <p className="text-xs font-semibold text-gray-700">Garantizada</p>
-                </div>
+                <p className="text-xs font-bold text-gray-900 uppercase">Garantía</p>
+                <p className="text-[10px] text-gray-500">Frescura total</p>
               </div>
             </div>
-
-            {/* Sticky Action Footer for Mobile & Integrated for Desktop */}
-            <div className="fixed md:relative bottom-0 left-0 right-0 bg-white border-t md:border-t-0 border-gray-100 p-6 md:p-0 md:mt-auto z-40 space-y-4">
-              <div className="flex gap-4">
-                {/* Modern Quantity Selector */}
-                <div className="flex items-center bg-gray-100 rounded-2xl p-1.5">
-                  <button 
-                    onClick={() => setQty(Math.max(1, qty - 1))}
-                    className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[#2D5016] transition-all rounded-xl hover:bg-white"
-                  >-</button>
-                  <span className="w-10 text-center font-bold text-gray-800">{qty}</span>
-                  <button 
-                    onClick={() => setQty(qty + 1)}
-                    className="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-[#2D5016] transition-all rounded-xl hover:bg-white"
-                  >+</button>
-                </div>
-                
-                <button 
-                  onClick={handleAddToCart}
-                  className="flex-1 bg-[#2D5016] text-white py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-[#325a19] hover:shadow-2xl hover:shadow-green-900/20 transition-all active:scale-95 flex items-center justify-center gap-2"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                  <span>Al Carrito</span>
-                </button>
-              </div>
-
-              <button 
-                onClick={handleBuyNow}
-                className="w-full bg-gray-900 text-white py-4 rounded-2xl font-black uppercase tracking-[0.2em] text-xs hover:bg-black transition-all active:scale-95 shadow-xl md:hidden lg:block whitespace-nowrap overflow-hidden"
-              >
-                Comprar Ahora – Entrega Exprés
-              </button>
-            </div>
-            
           </div>
+
+          {/* Sticky Footer Actions */}
+          <div className="p-6 md:p-8 bg-white border-t border-gray-100 z-20">
+             <div className="flex flex-col gap-4">
+               {/* Controls */}
+               <div className="flex items-center gap-4">
+                  {/* Quantity */}
+                  <div className="flex items-center bg-gray-100 rounded-full p-1.5 h-14">
+                    <button 
+                      onClick={() => setQty(Math.max(1, qty - 1))}
+                      className="w-11 h-11 flex items-center justify-center rounded-full bg-white text-gray-600 shadow-sm hover:scale-105 transition-all text-xl"
+                    >-</button>
+                    <span className="w-12 text-center font-semibold text-lg text-gray-900">{qty}</span>
+                    <button 
+                      onClick={() => setQty(qty + 1)}
+                      className="w-11 h-11 flex items-center justify-center rounded-full bg-[#2D5016] text-white shadow-sm hover:scale-105 transition-all text-xl"
+                    >+</button>
+                  </div>
+
+                  {/* Add to Cart */}
+                  <button 
+                    onClick={handleAddToCart}
+                    className="flex-1 bg-[#2D5016] text-white h-14 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[#1f3a0e] transition-all shadow-xl shadow-green-900/10 flex items-center justify-center gap-2 group"
+                  >
+                    <span>Agregar</span>
+                    <span className="bg-white/20 px-2 py-0.5 rounded text-xs">${(product.price * qty).toFixed(0)}</span>
+                  </button>
+               </div>
+               
+               <button 
+                 onClick={handleBuyNow}
+                 className="w-full py-3 text-xs font-bold uppercase tracking-widest text-[#2D5016] hover:bg-green-50 rounded-xl transition-colors"
+               >
+                 Comprar Ahora
+               </button>
+             </div>
+          </div>
+
         </div>
       </div>
     </div>
