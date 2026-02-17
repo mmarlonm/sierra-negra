@@ -18,17 +18,10 @@ export default function VideoSection() {
         <div className="max-w-5xl mx-auto">
           <div className="card-modern p-2">
             <VideoPlayer
-              src="/videos/sierra-negra-video.mp4"
-              poster="/images/hero/hero-bg.jpg"
+              src="/sierra-negra/images/gallery/sierra-negra-video.mp4"
+              poster="/sierra-negra/images/hero/cacaloc_zoquitlan.jpg"
               title="Sierra Negra - Un Paraíso Natural"
             />
-          </div>
-          
-          {/* Fallback message if video doesn't exist */}
-          <div className="mt-8 text-center">
-            <p className="text-[#6B6B6B] text-sm">
-              💡 Nota: Agrega un video en <code className="bg-[#F5F1E8] px-2 py-1 rounded">/public/videos/sierra-negra-video.mp4</code> para ver el reproductor en acción
-            </p>
           </div>
         </div>
       </div>

@@ -32,19 +32,32 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
+  // Hydrate from localStorage on mount
   useEffect(() => {
     try {
       const raw = localStorage.getItem("sn_cart");
-      if (raw) setItems(JSON.parse(raw));
-    } catch (e) {}
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          setItems(parsed);
+        }
+      }
+    } catch {
+      console.error("Failed to load cart");
+    } finally {
+      setIsHydrated(true);
+    }
   }, []);
 
+  // Save to localStorage when items change, but only after initial hydration
   useEffect(() => {
+    if (!isHydrated) return;
     try {
       localStorage.setItem("sn_cart", JSON.stringify(items));
-    } catch (e) {}
-  }, [items]);
+    } catch {}
+  }, [items, isHydrated]);
 
   const addItem = (p: Product, qty = 1) => {
     setItems((prev) => {

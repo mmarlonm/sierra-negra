@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { useCart } from "./CartContext";
 
 export default function Checkout() {
@@ -20,6 +21,16 @@ export default function Checkout() {
   const [expDate, setExpDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [flipped, setFlipped] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [orderId, setOrderId] = useState("");
+  
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setMounted(true);
+      setOrderId(`SN-${Math.floor(Math.random() * 1000000)}`);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   const isShippingValid = shippingName.trim() !== "" && shippingZip.trim() !== "" && shippingAddress.trim() !== "" && shippingPhone.trim().length > 9;
 
@@ -327,10 +338,10 @@ export default function Checkout() {
                    <p className="text-gray-500 text-lg mb-8 max-w-lg mx-auto">
                      Tu pedido ha sido confirmado. Hemos enviado un correo electrónico con los detalles de tu orden y el número de guía.
                    </p>
-                   <div className="bg-gray-50 p-6 rounded-2xl max-w-md mx-auto mb-8 border border-gray-100">
-                      <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">ID NO. PEDIDO</p>
-                      <p className="text-xl font-mono text-gray-800">SN-{Math.floor(Math.random() * 1000000)}</p>
-                   </div>
+                     <div className="bg-gray-50 p-6 rounded-2xl max-w-md mx-auto mb-8 border border-gray-100">
+                        <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">ID NO. PEDIDO</p>
+                        <p className="text-xl font-mono text-gray-800">{mounted ? orderId : '...'}</p>
+                     </div>
                    <button 
                      onClick={() => window.location.reload()} 
                      className="bg-[#2D5016] text-white px-10 py-4 rounded-full font-bold hover:bg-[#3d6b1f] transition-all hover:shadow-xl hover:shadow-green-900/10"
@@ -351,12 +362,12 @@ export default function Checkout() {
                  <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                    {items.map(i => (
                      <div key={i.id} className="flex gap-4">
-                       <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100">
-                         {i.images?.[0] ? 
-                           <img src={i.images[0]} className="w-full h-full object-cover" alt={i.name} /> :
-                           <div className="w-full h-full flex items-center justify-center text-xs text-gray-300">Img</div>
-                         }
-                       </div>
+                        <div className="w-16 h-16 bg-gray-50 rounded-lg overflow-hidden flex-shrink-0 border border-gray-100 relative">
+                          {i.images?.[0] ? 
+                            <Image src={i.images[0]} fill className="object-cover" alt={i.name} /> :
+                            <div className="w-full h-full flex items-center justify-center text-xs text-gray-300">Img</div>
+                          }
+                        </div>
                        <div className="flex-1">
                          <h4 className="text-sm font-medium text-gray-800 line-clamp-2">{i.name}</h4>
                          <p className="text-xs text-gray-500 mt-1">Cantidad: {i.quantity}</p>

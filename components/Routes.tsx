@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 // Imágenes de Unsplash seleccionadas para el tema Sierra Negra
 const routeImages = {

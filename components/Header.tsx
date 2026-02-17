@@ -7,8 +7,13 @@ import { useCart } from './CartContext';
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  let cart: any = null;
-  try { cart = useCart(); } catch {}
+  const [mounted, setMounted] = useState(false);
+  const cart = useCart();
+  
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
   
   // Safe toggle
   const handleCartClick = (e: React.MouseEvent) => {
@@ -24,7 +29,7 @@ export default function Header() {
       try {
         const h = ref.current?.offsetHeight || 112;
         document.documentElement.style.setProperty('--header-height', `${h}px`);
-      } catch (e) {}
+      } catch {}
     };
     setHeaderHeight();
     window.addEventListener('resize', setHeaderHeight);
@@ -88,7 +93,7 @@ export default function Header() {
           <li>
             <button onClick={handleCartClick} className="relative group">
               <span className={`${isScrolled ? 'text-[#2D5016]' : 'text-white'} inline-flex items-center gap-2 text-2xl group-hover:scale-110 transition-transform`}>🛒</span>
-              {cart && cart.count > 0 && (
+              {mounted && cart && cart.count > 0 && (
                 <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm animate-bounce-short">{cart.count}</span>
               )}
             </button>
@@ -148,7 +153,7 @@ export default function Header() {
             <li>
               <button onClick={(e) => { handleCartClick(e); setIsMobileMenuOpen(false); }} className="w-full text-[#2D5016] hover:text-[#4A7C2F] transition-colors font-medium py-2 flex items-center justify-between text-left">
                 <span>🛒 Carrito</span>
-                {cart && cart.count > 0 && (
+                {mounted && cart && cart.count > 0 && (
                   <span className="ml-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5">{cart.count}</span>
                 )}
               </button>

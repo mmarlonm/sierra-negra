@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Product } from "./CartContext";
 
 export default function ProductModal({ product, onClose, onAdd }: { product: Product; onClose: () => void; onAdd: (p: Product, qty?: number) => void }) {
@@ -54,10 +55,11 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
           <div className="flex-1 flex items-center justify-center p-8 md:p-12 overflow-hidden">
             <div className="relative w-full aspect-square md:h-full flex items-center justify-center">
               {images.length > 0 ? (
-                <img 
+                <Image 
                   src={images[index]} 
                   alt={product.name} 
-                  className="max-w-full max-h-full object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-700 transform hover:scale-105" 
+                  fill
+                  className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)] transition-all duration-700 transform hover:scale-105" 
                 />
               ) : (
                 <div className="text-gray-300 text-lg font-light tracking-widest uppercase italic">Sierra Negra</div>
@@ -74,7 +76,9 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
                   onClick={() => setIndex(i)} 
                   className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${i === index ? 'border-[#2D5016] ring-4 ring-green-50 scale-105' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-105'}`}
                 >
-                  <img src={src} alt="" className="w-full h-full object-cover" />
+                   <div className="relative w-full h-full">
+                     <Image src={src} alt="" fill className="object-cover" />
+                   </div>
                 </button>
               ))}
             </div>
@@ -116,7 +120,7 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
 
             {/* Description Card */}
             <div className="bg-[#F8F9F5] p-6 rounded-[1.5rem] border border-[#2D5016]/5 transition-all hover:bg-[#F2F4ED]">
-              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2D5016] mb-2opacity-60 mb-3">Origen y Calidad</h4>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2D5016] opacity-60 mb-3">Origen y Calidad</h4>
               <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">
                 {product.description || "Este producto emblemático de la Sierra Negra es cultivado bajo procesos sustentables, capturando la esencia de nuestra tierra en cada bocado."}
               </p>

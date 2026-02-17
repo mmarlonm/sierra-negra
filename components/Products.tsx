@@ -1,14 +1,98 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import Image from "next/image";
 import ProductCard from "./ProductCard";
 import ProductModal from "./ProductModal";
 import { Product } from "./CartContext";
 import { useCart } from "./CartContext";
 
-// ...existing imports...
-
-
+// SAMPLE_PRODUCTS with local images
+const SAMPLE_PRODUCTS: Product[] = [
+  // Zoquitlán
+  {
+    id: "z1",
+    name: "Durazno Criollo de Zoquitlán",
+    price: 35.0,
+    category: "Frutas",
+    description: "Durazno dulce y jugoso, cultivado en las tierras altas de Zoquitlán. Ideal para mermeladas o consumo fresco.",
+    image: "/sierra-negra/images/shop/durazno.png",
+    images: ["/sierra-negra/images/shop/durazno.png"],
+    origin: "Zoquitlán"
+  },
+  {
+    id: "z2",
+    name: "Aguacate Criollo Pequeño",
+    price: 28.0,
+    category: "Frutas",
+    description: "Aguacate de cáscara comestible, sabor intenso y textura cremosa. Conocido localmente como 'pagua' o 'aguacatillo'.",
+    image: "/sierra-negra/images/shop/aguacate.jpg",
+    images: ["/sierra-negra/images/shop/aguacate.jpg"],
+    origin: "Zoquitlán"
+  },
+  // Coyomeapan
+  {
+    id: "c1",
+    name: "Manzana Golden de Coyomeapan",
+    price: 22.0,
+    category: "Frutas",
+    description: "Manzana crujiente y aromática, cultivada en la niebla de Coyomeapan. Perfecta para postres.",
+    image: "/sierra-negra/images/shop/manzana.jpg",
+    images: ["/sierra-negra/images/shop/manzana.jpg"],
+    origin: "Coyomeapan"
+  },
+  // Eloxochitlán
+  {
+    id: "e1",
+    name: "Café de Altura Eloxochitlán",
+    price: 180.0,
+    category: "Bebidas",
+    description: "Café arábica de estricta altura, con notas a chocolate y cítricos. Tostado medio artesanal.",
+    image: "/sierra-negra/images/shop/cafe.jpg",
+    images: ["/sierra-negra/images/shop/cafe.jpg"],
+    origin: "Eloxochitlán"
+  },
+  {
+    id: "e2",
+    name: "Canela en Rama Orgánica",
+    price: 45.0,
+    category: "Especias",
+    description: "Canela recién cosechada, aroma intenso y dulce. Varitas largas seleccionadas a mano.",
+    image: "/sierra-negra/images/shop/canela-sierra.jpg",
+    images: ["/sierra-negra/images/shop/canela-sierra.jpg"],
+    origin: "Eloxochitlán"
+  },
+  {
+    id: "e3",
+    name: "Mermelada de Naranja Casera",
+    price: 65.0,
+    category: "Mermeladas",
+    description: "Elaborada con naranjas locales y azúcar de caña. Sin conservadores artificiales.",
+    image: "/sierra-negra/images/shop/mermelada.png",
+    images: ["/sierra-negra/images/shop/mermelada.png"],
+    origin: "Eloxochitlán"
+  },
+  {
+    id: "e4",
+    name: "Frijol Negro de la Sierra",
+    price: 32.0,
+    category: "Granos",
+    description: "Frijol negro nativo, de cocción rápida y caldo espeso. Sabor inigualable.",
+    image: "/sierra-negra/images/shop/frijol.png",
+    images: ["/sierra-negra/images/shop/frijol.png"],
+    origin: "Eloxochitlán"
+  },
+  {
+    id: "e5",
+    name: "Chile Seco Ahumado",
+    price: 55.0,
+    category: "Especias",
+    description: "Chile secado al sol y ahumado con leña de encino. Picor medio y gran aroma.",
+    image: "/sierra-negra/images/shop/chile.png",
+    images: ["/sierra-negra/images/shop/chile.png"],
+    origin: "Eloxochitlán"
+  }
+];
 
 export default function Products() {
   const [category, setCategory] = useState<string>("Todos");
@@ -17,95 +101,8 @@ export default function Products() {
   const [selected, setSelected] = useState<Product | null>(null);
   const { addItem } = useCart();
 
-  // SAMPLE_PRODUCTS with local images
-  const SAMPLE_PRODUCTS: Product[] = [
-    // Zoquitlán
-    {
-      id: "z1",
-      name: "Durazno Criollo de Zoquitlán",
-      price: 35.0,
-      category: "Frutas",
-      description: "Durazno dulce y jugoso, cultivado en las tierras altas de Zoquitlán. Ideal para mermeladas o consumo fresco.",
-      image: "/sierra-negra/images/shop/durazno.png",
-      images: ["/sierra-negra/images/shop/durazno.png"],
-      origin: "Zoquitlán"
-    },
-    {
-      id: "z2",
-      name: "Aguacate Criollo Pequeño",
-      price: 28.0,
-      category: "Frutas",
-      description: "Aguacate de cáscara comestible, sabor intenso y textura cremosa. Conocido localmente como 'pagua' o 'aguacatillo'.",
-      image: "/sierra-negra/images/shop/aguacate.jpg",
-      images: ["/sierra-negra/images/shop/aguacate.jpg"],
-      origin: "Zoquitlán"
-    },
-    // Coyomeapan
-    {
-      id: "c1",
-      name: "Manzana Golden de Coyomeapan",
-      price: 22.0,
-      category: "Frutas",
-      description: "Manzana crujiente y aromática, cultivada en la niebla de Coyomeapan. Perfecta para postres.",
-      image: "/sierra-negra/images/shop/manzana.jpg",
-      images: ["/sierra-negra/images/shop/manzana.jpg"],
-      origin: "Coyomeapan"
-    },
-    // Eloxochitlán
-    {
-      id: "e1",
-      name: "Café de Altura Eloxochitlán",
-      price: 180.0,
-      category: "Bebidas",
-      description: "Café arábica de estricta altura, con notas a chocolate y cítricos. Tostado medio artesanal.",
-      image: "/sierra-negra/images/shop/cafe.jpg",
-      images: ["/sierra-negra/images/shop/cafe.jpg"],
-      origin: "Eloxochitlán"
-    },
-    {
-      id: "e2",
-      name: "Canela en Rama Orgánica",
-      price: 45.0,
-      category: "Especias",
-      description: "Canela recién cosechada, aroma intenso y dulce. Varitas largas seleccionadas a mano.",
-      image: "/sierra-negra/images/shop/canela-sierra.jpg",
-      images: ["/sierra-negra/images/shop/canela-sierra.jpg"],
-      origin: "Eloxochitlán"
-    },
-    {
-      id: "e3",
-      name: "Mermelada de Naranja Casera",
-      price: 65.0,
-      category: "Mermeladas",
-      description: "Elaborada con naranjas locales y azúcar de caña. Sin conservadores artificiales.",
-      image: "/sierra-negra/images/shop/mermelada.png",
-      images: ["/sierra-negra/images/shop/mermelada.png"],
-      origin: "Eloxochitlán"
-    },
-    {
-      id: "e4",
-      name: "Frijol Negro de la Sierra",
-      price: 32.0,
-      category: "Granos",
-      description: "Frijol negro nativo, de cocción rápida y caldo espeso. Sabor inigualable.",
-      image: "/sierra-negra/images/shop/frijol.png",
-      images: ["/sierra-negra/images/shop/frijol.png"],
-      origin: "Eloxochitlán"
-    },
-    {
-      id: "e5",
-      name: "Chile Seco Ahumado",
-      price: 55.0,
-      category: "Especias",
-      description: "Chile secado al sol y ahumado con leña de encino. Picor medio y gran aroma.",
-      image: "/sierra-negra/images/shop/chile.png",
-      images: ["/sierra-negra/images/shop/chile.png"],
-      origin: "Eloxochitlán"
-    }
-  ];
-
-  const categories = useMemo(() => ["Todos", ...Array.from(new Set(SAMPLE_PRODUCTS.map(p => p.category || "Otros")))], [SAMPLE_PRODUCTS]);
-  const origins = useMemo(() => ["Todos", ...Array.from(new Set(SAMPLE_PRODUCTS.map(p => p.origin || "Otros")))], [SAMPLE_PRODUCTS]);
+  const categories = useMemo(() => ["Todos", ...Array.from(new Set(SAMPLE_PRODUCTS.map(p => p.category || "Otros")))], []);
+  const origins = useMemo(() => ["Todos", ...Array.from(new Set(SAMPLE_PRODUCTS.map(p => p.origin || "Otros")))], []);
 
   const filtered = SAMPLE_PRODUCTS.filter(p =>
     (category === "Todos" || p.category === category) &&
@@ -118,10 +115,12 @@ export default function Products() {
       {/* Hero Section - Reduced height, elegant */}
       <div className="relative h-[25vh] min-h-[220px] w-full overflow-hidden bg-[#2D5016]">
         <div className="absolute inset-0 z-0">
-             <img 
+             <Image 
               src="/sierra-negra/images/shop/hero-shop.png" 
               alt="Sierra Negra"
-              className="w-full h-full object-cover opacity-80"
+              fill
+              className="object-cover opacity-80"
+              priority
             />
         </div>
         

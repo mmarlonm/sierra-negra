@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image, { ImageProps } from "next/image";
 
 interface ImageWithFallbackProps extends ImageProps {
@@ -16,14 +16,17 @@ export default function ImageWithFallback({
   ...props
 }: ImageWithFallbackProps) {
   const [error, setError] = useState(false);
-  const [imgSrc, setImgSrc] = useState(src);
 
-  useEffect(() => {
-    setImgSrc(src);
-    setError(false);
-  }, [src]);
-
-  if (error || !imgSrc) {
+  if (error || !src) {
+    if (fallbackSrc) {
+      return (
+        <Image
+          {...props}
+          alt={alt}
+          src={fallbackSrc}
+        />
+      );
+    }
     return (
       <div className="flex flex-col items-center justify-center w-full h-full bg-gray-100 text-gray-400">
         <svg className="w-12 h-12 mb-2 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +43,7 @@ export default function ImageWithFallback({
     <Image
       {...props}
       alt={alt}
-      src={imgSrc}
+      src={src}
       onError={() => setError(true)}
     />
   );
