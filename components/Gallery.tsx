@@ -95,125 +95,143 @@ export default function Gallery() {
   };
 
   return (
-    <section id="galeria" className="py-24 bg-[#FDFDFB]">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-20 space-y-4">
-          <span className="text-[#2D5016] text-[10px] font-black uppercase tracking-[0.3em] bg-green-50 px-4 py-2 rounded-full">
+    <section id="galeria" className="py-24 bg-[#FDFCF9] overflow-hidden">
+      <div className="container-custom mx-auto">
+        <div className="text-center mb-20 space-y-6 animate-fade-in-up">
+          <span className="inline-block text-[#2D5016] text-[10px] font-black uppercase tracking-[0.3em] bg-[#2D5016]/5 px-6 py-2 rounded-full border border-[#2D5016]/10">
             Nuestros Paisajes
           </span>
-          <h2 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 tracking-tight">
-            Explora la Sierra Negra
+          <h2 className="text-5xl md:text-7xl font-serif font-bold text-gray-900 tracking-tight leading-none">
+            Explora la <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D5016] to-[#4A7C2F]">Sierra Negra</span>
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
-            Una travesía visual por los rincones más emblemáticos de nuestra tierra, capturando la esencia de nuestra cultura.
+          <p className="text-lg md:text-xl text-gray-500 max-w-3xl mx-auto font-light leading-relaxed">
+            Una travesía visual por los rincones más emblemáticos de nuestra tierra, capturando la esencia viva de nuestra cultura y naturaleza.
           </p>
         </div>
         
-        {/* Grouped Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {galleryGroups.map((group, index) => (
-            <div
-              key={group.id}
-              onClick={() => openSlider(group)}
-              className="group relative h-[450px] cursor-pointer overflow-hidden rounded-[2.5rem] shadow-2xl shadow-green-900/10 transition-all duration-700 hover:-translate-y-2"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <Image
-                src={group.coverImage}
-                alt={group.name}
-                fill
-                className="object-cover transition-transform duration-1000 group-hover:scale-110 group-hover:rotate-1"
-              />
-              {/* Overlay Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent transition-all duration-500 group-hover:via-gray-900/60" />
-              
-              {/* Content */}
-              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
-                <div className="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
-                  <p className="text-[9px] font-black uppercase tracking-[0.4em] text-green-400 mb-2 drop-shadow-sm">Destino</p>
-                  <h3 className="text-3xl font-serif font-bold mb-3 drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">{group.name}</h3>
-                  <p className="text-xs text-gray-200 font-light md:opacity-0 group-hover:opacity-100 transition-all duration-500 max-w-[240px] line-clamp-2">
-                    {group.description}
-                  </p>
-                  
-                  <div className="mt-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
-                    <span>Ver {group.images.length} fotos</span>
-                    <div className="w-6 h-px bg-white/30 group-hover:w-10 transition-all" />
+        {/* Centered Modern Grid */}
+        <div className="flex justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1400px]">
+            {galleryGroups.map((group, index) => (
+              <div
+                key={group.id}
+                onClick={() => openSlider(group)}
+                className="group relative h-[500px] cursor-pointer overflow-hidden rounded-[2rem] shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:z-10"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                <Image
+                  src={group.coverImage}
+                  alt={group.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                />
+                
+                {/* Modern Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/80 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]" />
+                
+                {/* Content */}
+                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="overflow-hidden">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#87A96B] mb-3 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                      Destino
+                    </p>
+                    <h3 className="text-3xl font-serif font-bold mb-3 leading-none">{group.name}</h3>
+                    <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-500">
+                      <p className="text-sm text-gray-200 font-light leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                        {group.description}
+                      </p>
+                      
+                      <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest border border-white/30 px-4 py-2 rounded-full hover:bg-white hover:text-[#2D5016] transition-all duration-300">
+                        <span>Ver Galería</span>
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Slider Overlay */}
+      {/* Modern Slider Overlay */}
       {activeGroup && (
         <div 
-          className="fixed inset-0 z-[100] bg-gray-950/95 backdrop-blur-xl flex items-center justify-center animate-fade-in"
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center animate-fade-in"
           onClick={() => setActiveGroup(null)}
         >
-          {/* Close Button */}
-          <button 
-            className="absolute top-8 right-8 z-[110] text-white/50 hover:text-white transition-colors p-4 bg-white/5 rounded-full backdrop-blur-md"
-            onClick={() => setActiveGroup(null)}
-          >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+          {/* Top Controls */}
+          <div className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-between items-start z-[110]">
+            <div className="text-white">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87A96B] mb-1">Galería</p>
+              <h3 className="text-2xl font-serif">{activeGroup.name}</h3>
+            </div>
+            <button 
+              className="text-white/50 hover:text-white hover:rotate-90 transition-all duration-300 p-2"
+              onClick={() => setActiveGroup(null)}
+            >
+              <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
 
           {/* Slider Content */}
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12 overflow-hidden" onClick={e => e.stopPropagation()}>
             
-            {/* navigation - prev */}
+            {/* Prev Button - Hidden on mobile */}
             <button 
               onClick={prevSlide}
-              className="absolute left-4 md:left-12 z-[110] text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 p-6 rounded-full backdrop-blur-sm"
+              className="hidden md:flex absolute left-8 z-[110] text-white hover:text-[#87A96B] transition-colors w-14 h-14 items-center justify-center border border-white/10 rounded-full hover:bg-white/5 backdrop-blur-sm"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
             </button>
 
-            {/* Current Image */}
-            <div className="relative w-full max-w-6xl aspect-[4/3] md:aspect-video rounded-[3rem] overflow-hidden shadow-2xl">
+            {/* Main Image Container */}
+            <div className="relative w-full max-w-6xl aspect-[4/5] md:aspect-video rounded-[1rem] md:rounded-[2rem] overflow-hidden shadow-2xl bg-[#1a1a1a]">
               <Image
                 src={activeGroup.images[currentIndex].image}
                 alt={activeGroup.images[currentIndex].title}
                 fill
-                className="object-cover animate-fade-in"
+                className="object-cover animate-fade-in transition-transform duration-700 hover:scale-105"
                 key={activeGroup.images[currentIndex].id}
+                priority
               />
               
-              {/* Image Info - Glassmorphic Bottom Bar with higher contrast */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 bg-black/60 md:bg-white/10 backdrop-blur-md border-t border-white/20">
-                <div className="max-w-3xl">
-                  <p className="text-green-400 text-[10px] font-black uppercase tracking-[0.3em] mb-2 drop-shadow-sm">
-                    {activeGroup.name} • {currentIndex + 1} de {activeGroup.images.length}
+              {/* Image Info Bar */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
+                <div className="max-w-4xl mx-auto text-center md:text-left">
+                  <p className="text-[#87A96B] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
+                    {currentIndex + 1} / {activeGroup.images.length}
                   </p>
-                  <h4 className="text-2xl md:text-4xl font-serif font-bold text-white mb-2 drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">
+                  <h4 className="text-2xl md:text-4xl font-serif font-bold text-white mb-3 leading-tight">
                     {activeGroup.images[currentIndex].title}
                   </h4>
-                  <p className="text-base md:text-lg text-gray-100 font-light leading-relaxed drop-shadow-sm">
+                  <p className="text-sm md:text-lg text-gray-300 font-light leading-relaxed max-w-2xl">
                     {activeGroup.images[currentIndex].description}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* navigation - next */}
+            {/* Next Button - Hidden on mobile */}
             <button 
               onClick={nextSlide}
-              className="absolute right-4 md:right-12 z-[110] text-white/30 hover:text-white transition-all bg-white/5 hover:bg-white/10 p-6 rounded-full backdrop-blur-sm"
+              className="hidden md:flex absolute right-8 z-[110] text-white hover:text-[#87A96B] transition-colors w-14 h-14 items-center justify-center border border-white/10 rounded-full hover:bg-white/5 backdrop-blur-sm"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" /></svg>
             </button>
 
-            {/* Mobile Swipe Indicators */}
-            <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-2 md:hidden">
+            {/* Mobile Navigation Dots */}
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 md:hidden z-[110]">
               {activeGroup.images.map((_, i) => (
-                <div 
+                <button 
                   key={i} 
-                  className={`w-2 h-2 rounded-full transition-all ${i === currentIndex ? 'bg-white w-8' : 'bg-white/20'}`}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-white w-6' : 'bg-white/30 w-1.5'}`}
                 />
               ))}
             </div>

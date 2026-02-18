@@ -70,7 +70,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center text-white/60">
-          <p className="text-[15px]">&copy; 2024 Sierra Negra. Todos los derechos reservados.</p>
+          <p className="text-[15px]">&copy; 2026 Sierra Negra. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
