@@ -128,19 +128,20 @@ export default function Gallery() {
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 
-                {/* Modern Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/0 to-black/80 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
-                <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 backdrop-blur-[2px]" />
+                {/* Modern Gradient Overlay - Stronger for better text visibility */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/90 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Content */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <div className="overflow-hidden">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#87A96B] mb-3 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
+                {/* Content - Lifted up with more padding */}
+                <div className="absolute inset-0 p-8 pt-12 position-relative flex flex-col justify-center text-white">
+                  <div className="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#87A96B] mb-2 opacity-80 group-hover:opacity-100 transition-all duration-500">
                       Destino
                     </p>
-                    <h3 className="text-3xl font-serif font-bold mb-3 leading-none">{group.name}</h3>
-                    <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-500">
-                      <p className="text-sm text-gray-200 font-light leading-relaxed mb-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
+                    <h3 className="text-3xl font-serif font-bold mb-3 leading-tight drop-shadow-md">{group.name}</h3>
+                    
+                    {/* Description - Fade in without layout shift */}
+                    <div className="overflow-hidden transition-all duration-500 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
+                      <p className="text-sm text-gray-200 font-light leading-relaxed mb-4">
                         {group.description}
                       </p>
                       

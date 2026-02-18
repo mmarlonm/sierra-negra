@@ -66,15 +66,15 @@ export default function Places() {
   return (
     <section id="lugares" className="section bg-gradient-to-b from-white via-[#FDFCF9] to-[#F5F1E8]">
       <div className="container-custom">
-        <div className="text-center mb-20">
-          <div className="inline-block mb-4">
-            <span className="text-5xl">🌲</span>
-          </div>
-          <h2 className="heading-medium mb-6">
-            <span className="text-gradient">Lugares Mágicos</span>
+        <div className="text-center mb-20 space-y-4 animate-fade-in-up">
+          <span className="inline-block text-[#2D5016] text-[10px] font-black uppercase tracking-[0.3em] bg-[#2D5016]/5 px-4 py-2 rounded-full mb-2 border border-[#2D5016]/10">
+            Destinos Inolvidables
+          </span>
+          <h2 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 tracking-tight">
+            Lugares <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D5016] to-[#87A96B]">Mágicos</span>
           </h2>
-          <p className="text-xl text-[#4A4A4A] max-w-2xl mx-auto leading-relaxed">
-            Descubre los destinos más impresionantes que la Sierra Negra tiene para ofrecer
+          <p className="text-xl text-[#4A4A4A] max-w-2xl mx-auto leading-relaxed font-light">
+            Descubre los rincones más impresionantes que la Sierra Negra tiene para ofrecer, donde la naturaleza cobra vida.
           </p>
         </div>
         
@@ -82,48 +82,55 @@ export default function Places() {
           {places.map((place, index) => (
             <div 
               key={place.id} 
-              className="group relative"
+              className="group flex flex-col h-full bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="card-modern overflow-hidden h-full flex flex-col">
-                  <div className="relative h-64 overflow-hidden group">
-                    <Image 
-                      src={place.image} 
-                      alt={place.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <div className="relative z-10 flex items-center gap-2 text-white/90 mb-2">
-                         <span className="text-xl">📍</span>
-                         <span className="font-medium text-sm">Sierra Negra, Puebla</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3 group-hover:text-primary transition-colors">
-                      {place.name}
-                    </h3>
-                  <p className="text-[#4A4A4A] mb-5 leading-relaxed text-[15px] flex-1">
-                    {place.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    {place.features.map((feature, idx) => (
-                      <span 
-                        key={idx}
-                        className="badge-light text-xs"
-                      >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="mt-auto pt-6 border-t border-gray-100">
-                    <button className="btn-secondary w-full justify-center py-2.5 text-sm !rounded-xl">
-                      <span>Ver Ubicación</span>
-                    </button>
-                  </div>
+              {/* Image Section */}
+              <div className="relative h-64 w-full overflow-hidden">
+                <Image 
+                  src={place.image} 
+                  alt={place.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+                
+                {/* Location Badge */}
+                <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-sm">
+                    <span className="text-xs">📍</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Puebla</span>
+                </div>
+              </div>
+
+              {/* Content Section */}
+              <div className="flex-1 p-8 flex flex-col">
+                <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3 group-hover:text-[#2D5016] transition-colors">
+                  {place.name}
+                </h3>
+                
+                <p className="text-gray-600 leading-relaxed text-sm font-light mb-6 flex-1">
+                  {place.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {place.features.map((feature, idx) => (
+                    <span 
+                      key={idx}
+                      className="px-3 py-1 rounded-md bg-gray-50 text-gray-700 text-[10px] font-bold uppercase tracking-wider border border-gray-200"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="border-t border-gray-100 pt-6 mt-auto">
+                   <button className="w-full flex items-center justify-center gap-2 bg-[#2D5016]/5 hover:bg-[#2D5016] text-[#2D5016] hover:text-white py-3 rounded-xl transition-all duration-300 font-bold text-xs uppercase tracking-widest group/btn">
+                     <span>Explorar Destino</span>
+                     <svg className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                     </svg>
+                   </button>
                 </div>
               </div>
             </div>
