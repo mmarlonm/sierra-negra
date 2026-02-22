@@ -4,12 +4,29 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Product } from "./CartContext";
 
-export default function ProductModal({ product, onClose, onAdd }: { product: Product; onClose: () => void; onAdd: (p: Product, qty?: number) => void }) {
+interface ProductModalProps {
+  product: Product;
+  onClose: () => void;
+  onAdd: (p: Product, qty?: number) => void;
+  dict: {
+    no_image: string;
+    add: string;
+    buy_now: string;
+    close: string;
+    fresh: string;
+    description: string;
+    fast_delivery: string;
+    fast_delivery_hint: string;
+    warranty: string;
+    warranty_hint: string;
+  };
+}
+
+export default function ProductModal({ product, onClose, onAdd, dict }: ProductModalProps) {
   const [qty, setQty] = useState(1);
   const images = product.images && product.images.length ? product.images : product.image ? [product.image] : [];
   const [index, setIndex] = useState(0);
 
-  // Prevent background scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -45,32 +62,32 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
         <button 
           onClick={onClose} 
           className="absolute top-4 right-4 z-30 text-gray-500 hover:text-black bg-white/80 backdrop-blur-md rounded-full p-3 transition-all hover:scale-110 shadow-lg"
-          aria-label="Cerrar"
+          aria-label={dict.close}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
 
-        {/* Left Section: Immersive Image Experience */}
+        {/* Left Section */}
         <div className="w-full md:w-[60%] lg:w-[65%] bg-[#F5F5F0] relative flex flex-col justify-center">
           <div className="h-[50vh] md:h-[80vh] w-full relative flex items-center justify-center p-8 md:p-16">
             <div className="relative w-full h-full max-w-2xl max-h-2xl">
               {images.length > 0 ? (
                 <Image 
-                  src={images[index]} 
-                  alt={product.name} 
-                  fill
-                  className="object-contain drop-shadow-2xl transition-all duration-700 ease-out" 
-                  priority
+                   src={images[index]} 
+                   alt={product.name} 
+                   fill
+                   className="object-contain drop-shadow-2xl transition-all duration-700 ease-out" 
+                   priority
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded-3xl text-gray-300 font-serif italic text-2xl">
-                  Sin imagen
+                  {dict.no_image}
                 </div>
               )}
             </div>
           </div>
           
-          {/* Gallery Thumbnails - Floating at bottom center */}
+          {/* Gallery Thumbnails */}
           {images.length > 1 && (
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 p-2 bg-white/50 backdrop-blur-md rounded-2xl shadow-sm border border-white/40">
               {images.map((src, i) => (
@@ -86,7 +103,7 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
           )}
         </div>
 
-        {/* Right Section: Product Details */}
+        {/* Right Section */}
         <div className="w-full md:w-[40%] lg:w-[35%] bg-white flex flex-col border-l border-gray-100 overflow-y-auto md:overflow-visible relative">
           
           <div className="flex-1 p-8 md:p-10 flex flex-col gap-6 overflow-y-auto custom-scrollbar">
@@ -99,7 +116,7 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
                   </span>
                 )}
                 <span className="px-3 py-1 rounded-full bg-orange-50 text-orange-800 text-[10px] font-bold uppercase tracking-widest">
-                  Fresco
+                  {dict.fresh}
                 </span>
               </div>
 
@@ -121,9 +138,9 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
 
             {/* Description */}
             <div className="space-y-4">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400">Descripción</h3>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gray-400">{dict.description}</h3>
               <p className="text-gray-600 text-base md:text-lg leading-relaxed font-light font-[Outfit]">
-                {product.description || "Un producto excepcional cultivado con dedicación en las montañas de la Sierra Negra, trayendo lo mejor de la naturaleza directamente a tu hogar."}
+                {product.description}
               </p>
             </div>
 
@@ -133,15 +150,15 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
                 <div className="w-8 h-8 text-[#2D5016] mb-2">
                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-900 uppercase">Entrega Rápida</p>
-                <p className="text-[10px] text-gray-500">En 24-48 horas</p>
+                <p className="text-xs font-bold text-gray-900 uppercase">{dict.fast_delivery}</p>
+                <p className="text-[10px] text-gray-500">{dict.fast_delivery_hint}</p>
               </div>
               <div className="p-4 bg-gray-50 rounded-2xl">
                 <div className="w-8 h-8 text-[#2D5016] mb-2">
                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
-                <p className="text-xs font-bold text-gray-900 uppercase">Garantía</p>
-                <p className="text-[10px] text-gray-500">Frescura total</p>
+                <p className="text-xs font-bold text-gray-900 uppercase">{dict.warranty}</p>
+                <p className="text-[10px] text-gray-500">{dict.warranty_hint}</p>
               </div>
             </div>
           </div>
@@ -169,7 +186,7 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
                     onClick={handleAddToCart}
                     className="flex-1 bg-[#2D5016] text-white h-14 rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[#1f3a0e] transition-all shadow-xl shadow-green-900/10 flex items-center justify-center gap-2 group"
                   >
-                    <span>Agregar</span>
+                    <span>{dict.add}</span>
                     <span className="bg-white/20 px-2 py-0.5 rounded text-xs">${(product.price * qty).toFixed(0)}</span>
                   </button>
                </div>
@@ -178,7 +195,7 @@ export default function ProductModal({ product, onClose, onAdd }: { product: Pro
                  onClick={handleBuyNow}
                  className="w-full py-3 text-xs font-bold uppercase tracking-widest text-[#2D5016] hover:bg-green-50 rounded-xl transition-colors"
                >
-                 Comprar Ahora
+                 {dict.buy_now}
                </button>
              </div>
           </div>

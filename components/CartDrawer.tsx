@@ -5,7 +5,21 @@ import Link from "next/link";
 import { useCart } from "./CartContext";
 import ImageWithFallback from "./ImageWithFallback";
 
-export default function CartDrawer() {
+interface CartDrawerProps {
+  lang: 'es' | 'en';
+  dict: {
+    title: string;
+    empty: string;
+    empty_subtitle: string;
+    back_to_shop: string;
+    remove: string;
+    total: string;
+    checkout: string;
+    taxes_hint: string;
+  };
+}
+
+export default function CartDrawer({ lang, dict }: CartDrawerProps) {
   const { items, isCartOpen, toggleCart, removeItem, updateQty, total } = useCart();
 
   if (!isCartOpen) return null;
@@ -23,7 +37,7 @@ export default function CartDrawer() {
         
         {/* Header */}
         <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-white z-10">
-           <h2 className="text-xl font-bold text-gray-900">Tu Carrito ({items.length})</h2>
+           <h2 className="text-xl font-bold text-gray-900">{dict.title} ({items.length})</h2>
            <button 
              onClick={toggleCart} 
              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -39,9 +53,9 @@ export default function CartDrawer() {
                <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
                  <span className="text-4xl">🛒</span>
                </div>
-               <h3 className="text-lg font-bold text-gray-900 mb-2">Tu carrito está vacío</h3>
-               <p className="text-gray-500 mb-6">Parece que aún no has descubierto nuestros productos.</p>
-               <button onClick={toggleCart} className="text-[#2D5016] font-bold underline">Volver a la tienda</button>
+               <h3 className="text-lg font-bold text-gray-900 mb-2">{dict.empty}</h3>
+               <p className="text-gray-500 mb-6">{dict.empty_subtitle}</p>
+               <button onClick={toggleCart} className="text-[#2D5016] font-bold underline">{dict.back_to_shop}</button>
             </div>
           ) : (
             items.map((item) => (
@@ -90,7 +104,7 @@ export default function CartDrawer() {
                          onClick={() => removeItem(item.id)}
                          className="text-xs text-red-500 font-medium underline px-2 py-1 hover:bg-red-50 rounded"
                        >
-                         Eliminar
+                         {dict.remove}
                        </button>
                     </div>
                  </div>
@@ -103,20 +117,20 @@ export default function CartDrawer() {
         {items.length > 0 && (
           <div className="p-6 border-t border-gray-100 bg-gray-50">
              <div className="flex justify-between items-center mb-4 text-lg font-bold text-gray-900">
-                <span>Total</span>
+                <span>{dict.total}</span>
                 <span>${total.toFixed(2)}</span>
              </div>
              
              <div className="space-y-3">
                <Link 
-                 href="/checkout" 
+                 href={`/${lang}/checkout`} 
                  onClick={toggleCart}
                  className="block w-full bg-[#2D5016] text-white text-center py-4 rounded-xl font-bold shadow-lg hover:shadow-xl hover:bg-[#1e3a0f] transition-all active:scale-95"
                >
-                 Proceder al Pago
+                 {dict.checkout}
                </Link>
                <p className="text-center text-xs text-gray-400">
-                 Impuestos calculados en el checkout
+                 {dict.taxes_hint}
                </p>
              </div>
           </div>

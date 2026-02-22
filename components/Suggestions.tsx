@@ -2,94 +2,63 @@
 
 import { useState } from 'react';
 
-interface Suggestion {
-  id: number;
-  category: string;
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
-const suggestions: Suggestion[] = [
-  {
-    id: 1,
-    category: 'Equipamiento',
-    title: 'Lleva ropa cómoda',
-    description: 'Usa ropa de senderismo y zapatos adecuados. Las capas son importantes para cambios de temperatura.',
-    icon: '👕',
-    color: 'from-blue-500 to-cyan-500'
-  },
-  {
-    id: 2,
-    category: 'Seguridad',
-    title: 'Hidratación constante',
-    description: 'Lleva suficiente agua. Se recomienda al menos 2 litros por persona para rutas de más de 3 horas.',
-    icon: '💧',
-    color: 'from-cyan-500 to-blue-600'
-  },
-  {
-    id: 3,
-    category: 'Fotografía',
-    title: 'Mejor hora para fotos',
-    description: 'El amanecer y atardecer ofrecen la mejor iluminación. Evita el mediodía para mejores resultados.',
-    icon: '📸',
-    color: 'from-purple-500 to-pink-500'
-  },
-  {
-    id: 4,
-    category: 'Naturaleza',
-    title: 'Respeta el entorno',
-    description: 'No dejes basura, no arranques plantas y mantén distancia con la fauna silvestre.',
-    icon: '🌿',
-    color: 'from-green-500 to-emerald-600'
-  },
-  {
-    id: 5,
-    category: 'Planificación',
-    title: 'Revisa el clima',
-    description: 'Consulta el pronóstico antes de salir. Las condiciones pueden cambiar rápidamente en la montaña.',
-    icon: '🌤️',
-    color: 'from-yellow-400 to-orange-500'
-  },
-  {
-    id: 6,
-    category: 'Grupos',
-    title: 'No vayas solo',
-    description: 'Es más seguro explorar en grupo. Si vas solo, informa a alguien de tu ruta y hora estimada de regreso.',
-    icon: '👥',
-    color: 'from-indigo-500 to-purple-600'
-  }
+const SUGGESTIONS_DATA = [
+  { id: 1, icon: '👕', color: 'from-blue-500 to-cyan-500' },
+  { id: 2, icon: '💧', color: 'from-cyan-500 to-blue-600' },
+  { id: 3, icon: '📸', color: 'from-purple-500 to-pink-500' },
+  { id: 4, icon: '🌿', color: 'from-green-500 to-emerald-600' },
+  { id: 5, icon: '🌤️', color: 'from-yellow-400 to-orange-500' },
+  { id: 6, icon: '👥', color: 'from-indigo-500 to-purple-600' }
 ];
 
-export default function Suggestions() {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
+interface SuggestionsProps {
+  dict: {
+    tag: string;
+    title: string;
+    accent: string;
+    description: string;
+    all: string;
+    items: {
+      [key: string]: {
+        category: string;
+        title: string;
+        description: string;
+      };
+    };
+  };
+}
 
-  const categories = ['Todos', ...Array.from(new Set(suggestions.map(s => s.category)))];
+export default function Suggestions({ dict }: SuggestionsProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>(dict.all);
 
-  const filteredSuggestions = selectedCategory === 'Todos' 
+  const suggestions = SUGGESTIONS_DATA.map(data => ({
+    ...data,
+    ...dict.items[data.id.toString()]
+  })).filter(s => s.title); // Filter out items not in dictionary
+
+  const categories = [dict.all, ...Array.from(new Set(suggestions.map(s => s.category)))];
+
+  const filteredSuggestions = selectedCategory === dict.all 
     ? suggestions 
     : suggestions.filter(s => s.category === selectedCategory);
 
   return (
     <section id="sugerencias" className="section bg-white relative overflow-hidden">
-      {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#2D5016]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <span className="inline-block text-[#2D5016] text-[10px] font-black uppercase tracking-[0.3em] bg-green-50 px-4 py-2 rounded-full mb-3 border border-[#2D5016]/10">
-            Tips de Viaje
+            {dict.tag}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 tracking-tight mb-4">
-            Sugerencias y Consejos
+            {dict.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D5016] to-[#87A96B]">{dict.accent}</span>
           </h2>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed font-light">
-            Prepárate para una experiencia segura y memorable con nuestras recomendaciones esenciales.
+            {dict.description}
           </p>
         </div>
         
-        {/* Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map((category) => (
             <button
@@ -106,7 +75,6 @@ export default function Suggestions() {
           ))}
         </div>
         
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredSuggestions.map((suggestion, index) => (
             <div 

@@ -49,7 +49,21 @@ const slides = [
   }
 ];
 
-export default function Hero() {
+interface HeroProps {
+  dict: {
+    slides: {
+      [key: string]: {
+        name: string;
+        description: string;
+      };
+    };
+    explore: string;
+    prev: string;
+    next: string;
+  };
+}
+
+export default function Hero({ dict }: HeroProps) {
   const slideRef = useRef<HTMLDivElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
   const prevRef = useRef<HTMLButtonElement>(null);
@@ -112,10 +126,10 @@ export default function Hero() {
               >
                 <div className="item-overlay"></div>
                 <div className="content">
-                  <h1 className="name">{slide.name}</h1>
-                  <p className="des">{slide.description}</p>
-                  <a href={slide.link} className="btn-slide" aria-label={`Explorar ${slide.name}`}>
-                    Explorar
+                  <h1 className="name">{dict.slides[slide.id.toString()]?.name || slide.name}</h1>
+                  <p className="des">{dict.slides[slide.id.toString()]?.description || slide.description}</p>
+                  <a href={slide.link} className="btn-slide" aria-label={`${dict.explore} ${dict.slides[slide.id.toString()]?.name || slide.name}`}>
+                    {dict.explore}
                   </a>
                 </div>
               </div>
@@ -123,7 +137,7 @@ export default function Hero() {
           </div>
 
           <div className="button">
-            <button className="prev" ref={prevRef} aria-label="Slide anterior">
+            <button className="prev" ref={prevRef} aria-label={dict.prev}>
               <FaArrowLeft />
             </button>
 
@@ -133,7 +147,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <button className="next" ref={nextRef} aria-label="Slide siguiente">
+            <button className="next" ref={nextRef} aria-label={dict.next}>
               <FaArrowRight />
             </button>
           </div>

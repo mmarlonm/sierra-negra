@@ -3,94 +3,96 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-interface GalleryImage {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-}
-
-interface GalleryGroup {
-  id: string;
-  name: string;
-  description: string;
-  coverImage: string;
-  images: GalleryImage[];
-}
-
-const galleryGroups: GalleryGroup[] = [
+const GALLERY_GROUPS_DATA = [
   {
     id: 'eloxochitlan',
-    name: 'Eloxochitlán',
-    description: 'Tierra de nubes y cafetales de altura.',
     coverImage: '/sierra-negra/images/gallery/san_miguel_eloxochitlan.jpg',
     images: [
-      { id: 1, title: 'San Miguel Eloxochitlán', image: '/sierra-negra/images/gallery/san_miguel_eloxochitlan.jpg', description: 'Vista aérea de la joya de la sierra.' },
-      { id: 101, title: 'Cafetales al Amanecer', image: '/sierra-negra/images/shop/cafe.jpg', description: 'El origen de nuestro sabor.' }
+      { id: 1, image: '/sierra-negra/images/gallery/san_miguel_eloxochitlan.jpg' },
+      { id: 101, image: '/sierra-negra/images/shop/cafe.jpg' }
     ]
   },
   {
     id: 'zoquitlan',
-    name: 'Zoquitlán',
-    description: 'Cuna de tradiciones y paisajes infinitos.',
     coverImage: '/sierra-negra/images/gallery/zoquitlan.webp',
     images: [
-      { id: 5, title: 'Centro de Zoquitlán', image: '/sierra-negra/images/gallery/zoquitlan.webp', description: 'Historia viva en cada rincón.' },
-      { id: 7, title: 'Cacaloc', image: '/sierra-negra/images/gallery/cacaloc_zoquitlan.jpg', description: 'El punto más alto de la Sierra Negra.' },
-      { id: 4, title: 'Río El Tepeyac', image: '/sierra-negra/images/gallery/tepeyac.jpg', description: 'Aguas cristalinas que dan vida a la región.' }
+      { id: 5, image: '/sierra-negra/images/gallery/zoquitlan.webp' },
+      { id: 7, image: '/sierra-negra/images/gallery/cacaloc_zoquitlan.jpg' },
+      { id: 4, image: '/sierra-negra/images/gallery/tepeyac.jpg' }
     ]
   },
   {
     id: 'crucero',
-    name: 'El Crucero',
-    description: 'Intersección natural entre valles y montañas.',
     coverImage: '/sierra-negra/images/gallery/crucero.png',
     images: [
-      { id: 1, title: 'Mirador del Crucero', image: '/sierra-negra/images/gallery/crucero.png', description: 'Donde las nubes tocan la tierra.' },
-      { id: 2, title: 'Sendero de Montaña', image: '/sierra-negra/images/gallery/crucero_2.png', description: 'Caminos que cuentan historias.' },
-      { id: 3, title: 'Bosque de Niebla', image: '/sierra-negra/images/gallery/crucero_3.jpeg', description: 'Misterio y naturaleza en estado puro.' }
+      { id: 1, image: '/sierra-negra/images/gallery/crucero.png' },
+      { id: 2, image: '/sierra-negra/images/gallery/crucero_2.png' },
+      { id: 3, image: '/sierra-negra/images/gallery/crucero_3.jpeg' }
     ]
   },
   {
     id: 'coyomeapan',
-    name: 'Coyomeapan',
-    description: 'El corazón profundo de la Sierra Negra.',
     coverImage: '/sierra-negra/images/gallery/san_juan_cuautla.jpg',
     images: [
-      { id: 1, title: 'San Juan Cuautla', image: '/sierra-negra/images/gallery/san_juan_cuautla.jpg', description: 'Paz y serenidad en las faldas de la montaña.' }
+      { id: 1, image: '/sierra-negra/images/gallery/san_juan_cuautla.jpg' }
     ]
   }
 ];
 
-export default function Gallery() {
-  const [activeGroup, setActiveGroup] = useState<GalleryGroup | null>(null);
+interface GalleryProps {
+  dict: {
+    tag: string;
+    title: string;
+    accent: string;
+    description: string;
+    view_gallery: string;
+    destination: string;
+    groups: {
+      [key: string]: {
+        name: string;
+        description: string;
+        images: {
+          [key: string]: {
+            title: string;
+            description: string;
+          };
+        };
+      };
+    };
+  };
+}
+
+export default function Gallery({ dict }: GalleryProps) {
+  const [activeGroupId, setActiveGroupId] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Prevent scroll when slider is open
+  const activeGroupData = GALLERY_GROUPS_DATA.find(g => g.id === activeGroupId);
+  const activeGroupDict = activeGroupId ? dict.groups[activeGroupId] : null;
+
   useEffect(() => {
-    if (activeGroup) {
+    if (activeGroupId) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-  }, [activeGroup]);
+  }, [activeGroupId]);
 
-  const openSlider = (group: GalleryGroup) => {
-    setActiveGroup(group);
+  const openSlider = (groupId: string) => {
+    setActiveGroupId(groupId);
     setCurrentIndex(0);
   };
 
   const nextSlide = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (activeGroup) {
-      setCurrentIndex((prev) => (prev + 1) % activeGroup.images.length);
+    if (activeGroupData) {
+      setCurrentIndex((prev) => (prev + 1) % activeGroupData.images.length);
     }
   };
 
   const prevSlide = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (activeGroup) {
-      setCurrentIndex((prev) => (prev - 1 + activeGroup.images.length) % activeGroup.images.length);
+    if (activeGroupData) {
+      setCurrentIndex((prev) => (prev - 1 + activeGroupData.images.length) % activeGroupData.images.length);
     }
   };
 
@@ -99,80 +101,79 @@ export default function Gallery() {
       <div className="container-custom mx-auto">
         <div className="text-center mb-20 space-y-6 animate-fade-in-up">
           <span className="inline-block text-[#2D5016] text-[10px] font-black uppercase tracking-[0.3em] bg-[#2D5016]/5 px-6 py-2 rounded-full border border-[#2D5016]/10">
-            Nuestros Paisajes
+            {dict.tag}
           </span>
           <h2 className="text-5xl md:text-7xl font-serif font-bold text-gray-900 tracking-tight leading-none">
-            Explora la <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D5016] to-[#4A7C2F]">Sierra Negra</span>
+            {dict.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2D5016] to-[#4A7C2F]">{dict.accent}</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-500 max-w-3xl mx-auto font-light leading-relaxed">
-            Una travesía visual por los rincones más emblemáticos de nuestra tierra, capturando la esencia viva de nuestra cultura y naturaleza.
+            {dict.description}
           </p>
         </div>
         
-        {/* Centered Modern Grid */}
         <div className="flex justify-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-[1400px]">
-            {galleryGroups.map((group, index) => (
-              <div
-                key={group.id}
-                onClick={() => openSlider(group)}
-                className="group relative h-[500px] cursor-pointer overflow-hidden rounded-[2rem] shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:z-10"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="absolute inset-0 bg-gray-200 animate-pulse" />
-                <Image
-                  src={group.coverImage}
-                  alt={group.name}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-                
-                {/* Modern Gradient Overlay - Stronger for better text visibility */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/90 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Content - Lifted up with more padding */}
-                <div className="absolute inset-0 p-8 pt-12 position-relative flex flex-col justify-center text-white">
-                  <div className="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#87A96B] mb-2 opacity-80 group-hover:opacity-100 transition-all duration-500">
-                      Destino
-                    </p>
-                    <h3 className="text-3xl font-serif font-bold mb-3 leading-tight drop-shadow-md">{group.name}</h3>
-                    
-                    {/* Description - Fade in without layout shift */}
-                    <div className="overflow-hidden transition-all duration-500 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
-                      <p className="text-sm text-gray-200 font-light leading-relaxed mb-4">
-                        {group.description}
+            {GALLERY_GROUPS_DATA.map((group, index) => {
+              const groupDict = dict.groups[group.id];
+              if (!groupDict) return null;
+
+              return (
+                <div
+                  key={group.id}
+                  onClick={() => openSlider(group.id)}
+                  className="group relative h-[500px] cursor-pointer overflow-hidden rounded-[2rem] shadow-lg transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:z-10"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                  <Image
+                    src={group.coverImage}
+                    alt={groupDict.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/10 to-black/90 opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="absolute inset-0 p-8 pt-12 position-relative flex flex-col justify-center text-white">
+                    <div className="transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#87A96B] mb-2 opacity-80 group-hover:opacity-100 transition-all duration-500">
+                        {dict.destination}
                       </p>
+                      <h3 className="text-3xl font-serif font-bold mb-3 leading-tight drop-shadow-md">{groupDict.name}</h3>
                       
-                      <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest border border-white/30 px-4 py-2 rounded-full hover:bg-white hover:text-[#2D5016] transition-all duration-300">
-                        <span>Ver Galería</span>
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                      <div className="overflow-hidden transition-all duration-500 max-h-0 opacity-0 group-hover:max-h-40 group-hover:opacity-100">
+                        <p className="text-sm text-gray-200 font-light leading-relaxed mb-4">
+                          {groupDict.description}
+                        </p>
+                        
+                        <div className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest border border-white/30 px-4 py-2 rounded-full hover:bg-white hover:text-[#2D5016] transition-all duration-300">
+                          <span>{dict.view_gallery}</span>
+                          <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
 
-      {/* Modern Slider Overlay */}
-      {activeGroup && (
+      {activeGroupData && activeGroupDict && (
         <div 
           className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-2xl flex items-center justify-center animate-fade-in"
-          onClick={() => setActiveGroup(null)}
+          onClick={() => setActiveGroupId(null)}
         >
-          {/* Top Controls */}
           <div className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-between items-start z-[110]">
             <div className="text-white">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87A96B] mb-1">Galería</p>
-              <h3 className="text-2xl font-serif">{activeGroup.name}</h3>
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#87A96B] mb-1">{dict.view_gallery}</p>
+              <h3 className="text-2xl font-serif">{activeGroupDict.name}</h3>
             </div>
             <button 
               className="text-white/50 hover:text-white hover:rotate-90 transition-all duration-300 p-2"
-              onClick={() => setActiveGroup(null)}
+              onClick={() => setActiveGroupId(null)}
             >
               <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
@@ -180,10 +181,7 @@ export default function Gallery() {
             </button>
           </div>
 
-          {/* Slider Content */}
           <div className="relative w-full h-full flex items-center justify-center p-4 md:p-12 overflow-hidden" onClick={e => e.stopPropagation()}>
-            
-            {/* Prev Button - Hidden on mobile */}
             <button 
               onClick={prevSlide}
               className="hidden md:flex absolute left-8 z-[110] text-white hover:text-[#87A96B] transition-colors w-14 h-14 items-center justify-center border border-white/10 rounded-full hover:bg-white/5 backdrop-blur-sm"
@@ -191,34 +189,31 @@ export default function Gallery() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" /></svg>
             </button>
 
-            {/* Main Image Container */}
             <div className="relative w-full max-w-6xl aspect-[4/5] md:aspect-video rounded-[1rem] md:rounded-[2rem] overflow-hidden shadow-2xl bg-[#1a1a1a]">
               <Image
-                src={activeGroup.images[currentIndex].image}
-                alt={activeGroup.images[currentIndex].title}
+                src={activeGroupData.images[currentIndex].image}
+                alt={activeGroupDict.images[activeGroupData.images[currentIndex].id.toString()]?.title || ''}
                 fill
                 className="object-cover animate-fade-in transition-transform duration-700 hover:scale-105"
-                key={activeGroup.images[currentIndex].id}
+                key={activeGroupData.images[currentIndex].id}
                 priority
               />
               
-              {/* Image Info Bar */}
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 bg-gradient-to-t from-black/90 via-black/50 to-transparent">
                 <div className="max-w-4xl mx-auto text-center md:text-left">
                   <p className="text-[#87A96B] text-[10px] font-black uppercase tracking-[0.3em] mb-3">
-                    {currentIndex + 1} / {activeGroup.images.length}
+                    {currentIndex + 1} / {activeGroupData.images.length}
                   </p>
                   <h4 className="text-2xl md:text-4xl font-serif font-bold text-white mb-3 leading-tight">
-                    {activeGroup.images[currentIndex].title}
+                    {activeGroupDict.images[activeGroupData.images[currentIndex].id.toString()]?.title}
                   </h4>
                   <p className="text-sm md:text-lg text-gray-300 font-light leading-relaxed max-w-2xl">
-                    {activeGroup.images[currentIndex].description}
+                    {activeGroupDict.images[activeGroupData.images[currentIndex].id.toString()]?.description}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Next Button - Hidden on mobile */}
             <button 
               onClick={nextSlide}
               className="hidden md:flex absolute right-8 z-[110] text-white hover:text-[#87A96B] transition-colors w-14 h-14 items-center justify-center border border-white/10 rounded-full hover:bg-white/5 backdrop-blur-sm"
@@ -226,9 +221,8 @@ export default function Gallery() {
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" /></svg>
             </button>
 
-            {/* Mobile Navigation Dots */}
             <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-3 md:hidden z-[110]">
-              {activeGroup.images.map((_, i) => (
+              {activeGroupData.images.map((_, i) => (
                 <button 
                   key={i} 
                   onClick={() => setCurrentIndex(i)}

@@ -7,9 +7,14 @@ interface VideoPlayerProps {
   poster?: string;
   title?: string;
   className?: string;
+  dict: {
+    error_loading: string;
+    not_supported: string;
+    watch_video: string;
+  };
 }
 
-export default function VideoPlayer({ src, poster, title, className = '' }: VideoPlayerProps) {
+export default function VideoPlayer({ src, poster, title, className = '', dict }: VideoPlayerProps) {
   const [hasError, setHasError] = useState(false);
   const [isStarted, setIsStarted] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -37,7 +42,6 @@ export default function VideoPlayer({ src, poster, title, className = '' }: Vide
     setIsStarted(true);
     video.play().catch(err => {
       console.error("Error attempting to play:", err);
-      // If auto-play fails (e.g. browser restriction), we still show controls so user can try again
     });
   };
 
@@ -46,7 +50,7 @@ export default function VideoPlayer({ src, poster, title, className = '' }: Vide
       <div className={`video-container ${className} bg-gray-100 flex items-center justify-center rounded-2xl aspect-video`}>
         <div className="text-center text-gray-500 p-8">
           <div className="text-4xl mb-4">⚠️</div>
-          <div className="text-lg">No se pudo cargar el video</div>
+          <div className="text-lg">{dict.error_loading}</div>
           <code className="text-xs mt-2 block bg-gray-200 p-1 rounded">{src}</code>
         </div>
       </div>
@@ -64,10 +68,9 @@ export default function VideoPlayer({ src, poster, title, className = '' }: Vide
         className="w-full h-full object-cover aspect-video"
       >
         <source src={src} type="video/mp4" />
-        Tu navegador no soporta el elemento de video.
+        {dict.not_supported}
       </video>
 
-      {/* Overlay - Only visible before video starts */}
       {!isStarted && (
         <div 
           className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer group"
@@ -88,7 +91,7 @@ export default function VideoPlayer({ src, poster, title, className = '' }: Vide
             </h3>
           )}
           <p className="text-white/90 text-sm mt-2 font-medium drop-shadow-md">
-            Ver Video
+            {dict.watch_video}
           </p>
         </div>
       )}

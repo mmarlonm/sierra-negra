@@ -1,0 +1,442 @@
+{
+    "header": {
+        "title": "Sierra Negra",
+        "links": {
+            "inicio": "Home",
+            "lugares": "Places",
+            "rutas": "Routes",
+            "galeria": "Gallery",
+            "video": "Video",
+            "sugerencias": "Suggestions",
+            "tienda": "Shop",
+            "carrito": "Cart"
+        }
+    },
+    "cart": {
+        "title": "Your Cart",
+        "empty": "Your cart is empty",
+        "empty_subtitle": "It seems you haven't discovered our products yet.",
+        "back_to_shop": "Back to shop",
+        "remove": "Remove",
+        "total": "Total",
+        "checkout": "Proceed to Checkout",
+        "taxes_hint": "Taxes calculated at checkout"
+    },
+    "hero": {
+        "slides": {
+            "1": {
+                "name": "Sierra Negra",
+                "description": "A natural paradise full of breathtaking landscapes and unforgettable experiences."
+            },
+            "2": {
+                "name": "El Tepeyac",
+                "description": "Observe one of the most important rivers in the Sierra Negra."
+            },
+            "3": {
+                "name": "Zoquitlan",
+                "description": "A place full of history and traditions that will make you feel part of the local culture."
+            },
+            "4": {
+                "name": "San Juan Cuautla",
+                "description": "Walk among centuries-old trees and discover the magic of virgin nature."
+            },
+            "5": {
+                "name": "Cacaloc Zoquitlan",
+                "description": "The highest point of the sierra. A challenging hike with incredible rewards."
+            },
+            "6": {
+                "name": "San Miguel Eloxochitlan",
+                "description": "A place of much nature and peace, ideal for disconnecting from the world and reconnecting with yourself."
+            }
+        },
+        "explore": "Explore",
+        "prev": "Previous slide",
+        "next": "Next slide"
+    },
+    "places": {
+        "tag": "Unforgettable Destinations",
+        "title": "Magical",
+        "accent": "Places",
+        "description": "Discover the most impressive corners that Sierra Negra has to offer, where nature comes to life.",
+        "explore": "Explore Destination",
+        "items": {
+            "1": {
+                "name": "Sky Lookout",
+                "description": "A panoramic view that will leave you breathless. Observe the sunrise from the heights.",
+                "features": [
+                    "Panoramic View",
+                    "Sunrise",
+                    "Photography"
+                ]
+            },
+            "2": {
+                "name": "Emerald Waterfall",
+                "description": "Crystal clear water falling among lush vegetation. An oasis of peace and freshness.",
+                "features": [
+                    "Waterfall",
+                    "Nature",
+                    "Relaxation"
+                ]
+            },
+            "3": {
+                "name": "Enchanted Forest",
+                "description": "Walk among centuries-old trees and discover the magic of virgin nature.",
+                "features": [
+                    "Hiking",
+                    "Flora",
+                    "Adventure"
+                ]
+            },
+            "4": {
+                "name": "Swan Lake",
+                "description": "A calm mirror of water where nature is reflected in perfect harmony.",
+                "features": [
+                    "Lake",
+                    "Wildlife",
+                    "Peace"
+                ]
+            },
+            "5": {
+                "name": "Crystal Cave",
+                "description": "Explore unique geological formations in this natural cave full of mystery.",
+                "features": [
+                    "Geology",
+                    "Exploration",
+                    "Adventure"
+                ]
+            },
+            "6": {
+                "name": "Eagle's Peak",
+                "description": "The highest point of the sierra. A challenging hike with incredible rewards.",
+                "features": [
+                    "Mountaineering",
+                    "View",
+                    "Challenge"
+                ]
+            }
+        }
+    },
+    "routes": {
+        "tag": "Routes and Trails",
+        "title": "Adventures on",
+        "accent": "Foot",
+        "description": "Explore the most emblematic trails of Sierra Negra, designed for all levels of adventure.",
+        "explore": "See Details",
+        "difficulty_label": {
+            "Fácil": "Easy",
+            "Moderada": "Moderate",
+            "Difícil": "Hard"
+        },
+        "items": {
+            "1": {
+                "name": "Sunrise Route",
+                "description": "A perfect morning hike to see the sunrise from the lookout.",
+                "highlights": [
+                    "Spectacular sunrise",
+                    "Panoramic view",
+                    "Photography"
+                ],
+                "duration": "3-4 hours",
+                "distance": "8 km"
+            },
+            "2": {
+                "name": "Forest Trail",
+                "description": "Ideal for families. Walk among trees and enjoy nature.",
+                "highlights": [
+                    "Family-friendly",
+                    "Nature",
+                    "Relaxing"
+                ],
+                "duration": "2 hours",
+                "distance": "5 km"
+            },
+            "3": {
+                "name": "Peak Ascent",
+                "description": "For the more adventurous. Reach the top and enjoy unmatched views.",
+                "highlights": [
+                    "Challenging",
+                    "360° View",
+                    "Personal achievement"
+                ],
+                "duration": "6-8 hours",
+                "distance": "15 km"
+            },
+            "4": {
+                "name": "Waterfall Circuit",
+                "description": "Visit multiple waterfalls and natural pools in a single tour.",
+                "highlights": [
+                    "Waterfalls",
+                    "Swimming",
+                    "Fun"
+                ],
+                "duration": "4-5 hours",
+                "distance": "10 km"
+            },
+            "5": {
+                "name": "Night Route",
+                "description": "Explore the sierra under the stars with specialized guides.",
+                "highlights": [
+                    "Astronomy",
+                    "Night nature",
+                    "Unique experience"
+                ],
+                "duration": "2 hours",
+                "distance": "4 km"
+            },
+            "6": {
+                "name": "Full Crossing",
+                "description": "The most complete route. Camp under the stars and live the full adventure.",
+                "highlights": [
+                    "Camping",
+                    "Adventure",
+                    "Complete experience"
+                ],
+                "duration": "2 days",
+                "distance": "30 km"
+            }
+        }
+    },
+    "gallery": {
+        "tag": "Our Gallery",
+        "title": "Captured",
+        "accent": "Moments",
+        "description": "A visual collection of the natural and cultural beauty of Sierra Negra.",
+        "view_gallery": "View Gallery",
+        "destination": "Destination",
+        "groups": {
+            "eloxochitlan": {
+                "name": "Eloxochitlán",
+                "description": "Land of clouds and high-altitude coffee plantations.",
+                "images": {
+                    "1": {
+                        "title": "San Miguel Eloxochitlán",
+                        "description": "Aerial view of the jewel of the sierra."
+                    },
+                    "101": {
+                        "title": "Coffee Plantations at Sunrise",
+                        "description": "The origin of our flavor."
+                    }
+                }
+            },
+            "zoquitlan": {
+                "name": "Zoquitlán",
+                "description": "Cradle of traditions and infinite landscapes.",
+                "images": {
+                    "5": {
+                        "title": "Zoquitlán Center",
+                        "description": "Living history in every corner."
+                    },
+                    "7": {
+                        "title": "Cacaloc",
+                        "description": "The highest point of Sierra Negra."
+                    },
+                    "4": {
+                        "title": "El Tepeyac River",
+                        "description": "Crystal clear waters that give life to the region."
+                    }
+                }
+            },
+            "crucero": {
+                "name": "El Crucero",
+                "description": "Natural intersection between valleys and mountains.",
+                "images": {
+                    "1": {
+                        "title": "Crucero Lookout",
+                        "description": "Where clouds touch the earth."
+                    },
+                    "2": {
+                        "title": "Mountain Trail",
+                        "description": "Paths that tell stories."
+                    },
+                    "3": {
+                        "title": "Cloud Forest",
+                        "description": "Mystery and nature in its purest state."
+                    }
+                }
+            },
+            "coyomeapan": {
+                "name": "Coyomeapan",
+                "description": "The deep heart of Sierra Negra.",
+                "images": {
+                    "1": {
+                        "title": "San Juan Cuautla",
+                        "description": "Peace and serenity at the foot of the mountain."
+                    }
+                }
+            }
+        }
+    },
+    "video": {
+        "tag": "Immersive Experience",
+        "title": "Feel",
+        "accent": "Nature",
+        "description": "Immerse yourself in a visual journey through the deepest corners of our sierra.",
+        "error_loading": "Could not load the video",
+        "not_supported": "Your browser does not support the video element.",
+        "watch_video": "Watch Video"
+    },
+    "suggestions": {
+        "tag": "Recommendations",
+        "title": "Suggestions and",
+        "accent": "Advice",
+        "description": "Prepare for a safe and memorable experience with our essential recommendations.",
+        "all": "All",
+        "items": {
+            "1": {
+                "category": "Equipment",
+                "title": "Wear comfortable clothes",
+                "description": "Use hiking clothes and suitable shoes. Layers are important for temperature changes."
+            },
+            "2": {
+                "category": "Security",
+                "title": "Constant hydration",
+                "description": "Carry enough water. At least 2 liters per person is recommended for routes longer than 3 hours."
+            },
+            "3": {
+                "category": "Photography",
+                "title": "Best time for photos",
+                "description": "Sunrise and sunset offer the best lighting. Avoid midday for better results."
+            },
+            "4": {
+                "category": "Nature",
+                "title": "Respect the environment",
+                "description": "Do not leave trash, do not pull up plants, and maintain distance from wildlife."
+            },
+            "5": {
+                "category": "Planning",
+                "title": "Check the weather",
+                "description": "Check the forecast before heading out. Conditions can change quickly in the mountains."
+            },
+            "6": {
+                "category": "Groups",
+                "title": "Don't go alone",
+                "description": "It is safer to explore in groups. If you go alone, inform someone of your route and estimated return time."
+            }
+        }
+    },
+    "footer": {
+        "description": "Discover the natural beauty of the Sierra Negra. A unique experience in contact with nature.",
+        "links_title": "Quick Links",
+        "contact_title": "Contact",
+        "rights": "© 2026 Sierra Negra. All rights reserved."
+    },
+    "shop": {
+        "hero": {
+            "title": "High-Altitude Flavors",
+            "subtitle": "Authentic flavors from Sierra Negra, directly to your table.",
+            "tag": "2026 Catalog"
+        },
+        "filters": {
+            "all": "All",
+            "search": "Search...",
+            "results": "RESULTS",
+            "no_results": "We couldn't find what you're looking for.",
+            "clear": "Clear filters",
+            "from": "from"
+        },
+        "categories": {
+            "Todos": "All",
+            "Frutas": "Fruits",
+            "Bebidas": "Drinks",
+            "Especias": "Spices",
+            "Mermeladas": "Jams",
+            "Granos": "Grains"
+        },
+        "ui": {
+            "no_image": "No image",
+            "add_to_cart": "Add to cart",
+            "add": "Add",
+            "buy_now": "Buy Now",
+            "close": "Close",
+            "fresh": "Fresh",
+            "description": "Description",
+            "fast_delivery": "Fast Delivery",
+            "fast_delivery_hint": "In 24-48 hours",
+            "warranty": "Warranty",
+            "warranty_hint": "Total freshness"
+        },
+        "products": {
+            "z1": {
+                "name": "Zoquitlán Heirloom Peach",
+                "description": "Sweet and juicy peach, grown in the highlands of Zoquitlán. Ideal for jams or fresh consumption."
+            },
+            "z2": {
+                "name": "Small Heirloom Avocado",
+                "description": "Avocado with edible skin, intense flavor, and creamy texture. Locally known as 'pagua' or 'aguacatillo'."
+            },
+            "c1": {
+                "name": "Coyomeapan Golden Apple",
+                "description": "Crispy and aromatic apple, grown in the mist of Coyomeapan. Perfect for desserts."
+            },
+            "e1": {
+                "name": "Eloxochitlán High-Altitude Coffee",
+                "description": "Strict high-altitude Arabica coffee, with chocolate and citrus notes. Hand-roasted medium roast."
+            },
+            "e2": {
+                "name": "Organic Cinnamon Sticks",
+                "description": "Freshly harvested cinnamon, intense and sweet aroma. Long sticks hand-selected."
+            },
+            "e3": {
+                "name": "Homemade Orange Jam",
+                "description": "Made with local oranges and cane sugar. No artificial preservatives."
+            },
+            "e4": {
+                "name": "Black Beans from the Sierra",
+                "description": "Native black beans, quick-cooking and thick broth. Unmatched flavor."
+            },
+            "e5": {
+                "name": "Smoked Dried Chili",
+                "description": "Chili sun-dried and smoked with oak wood. Medium heat and great aroma."
+            }
+        }
+    },
+    "checkout": {
+        "steps": {
+            "shipping": "Shipping",
+            "payment": "Payment",
+            "ready": "Ready"
+        },
+        "empty": {
+            "title": "Your cart is empty",
+            "subtitle": "It seems you haven't added any products from our sierra yet.",
+            "button": "Explore Products"
+        },
+        "shipping": {
+            "title": "Shipping Information",
+            "name": "Full Name",
+            "zip": "Zip Code",
+            "state": "State",
+            "address": "Exact Address",
+            "phone": "Phone",
+            "phone_hint": "To contact you for delivery (10 digits)",
+            "continue": "Continue to Payment"
+        },
+        "payment": {
+            "title": "Payment Details",
+            "card_number": "Card Number",
+            "card_holder": "Cardholder Name",
+            "card_holder_hint": "As it appears on the card",
+            "expiration": "Expiration",
+            "cvv": "CVV / CVC",
+            "cvv_hint": "3 digits on the back",
+            "secure": "End-to-end encrypted payments",
+            "back": "Back",
+            "pay": "Pay",
+            "processing": "Processing payment..."
+        },
+        "success": {
+            "title": "Thank you for your purchase!",
+            "subtitle": "Your order has been confirmed. We have sent an email with your order details and tracking number.",
+            "order_id": "ORDER ID NO.",
+            "button": "Back to shop"
+        },
+        "summary": {
+            "title": "Order Summary",
+            "quantity": "Quantity",
+            "subtotal": "Subtotal",
+            "shipping_cost": "Shipping",
+            "free": "Free",
+            "total": "Total"
+        }
+    }
+}

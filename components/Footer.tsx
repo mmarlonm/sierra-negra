@@ -1,4 +1,13 @@
-export default function Footer() {
+interface FooterProps {
+  dict: {
+    description: string;
+    links_title: string;
+    contact_title: string;
+    rights: string;
+  };
+}
+
+export default function Footer({ dict }: FooterProps) {
   return (
     <footer className="py-16 px-6 bg-gradient-to-b from-[#1A3009] via-[#2D5016] to-[#1A3009] text-white">
       <div className="container-custom">
@@ -9,13 +18,12 @@ export default function Footer() {
               <span>Sierra Negra</span>
             </h3>
             <p className="text-white/80 leading-relaxed text-[15px]">
-              Descubre la belleza natural de la Sierra Negra. 
-              Una experiencia única en contacto con la naturaleza.
+              {dict.description}
             </p>
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-5 text-white">Enlaces Rápidos</h4>
+            <h4 className="text-lg font-semibold mb-5 text-white">{dict.links_title}</h4>
             <ul className="space-y-3 text-white/80">
               <li>
                 <a href="#inicio" className="hover:text-white transition-colors text-[15px] flex items-center gap-2">
@@ -51,7 +59,7 @@ export default function Footer() {
           </div>
           
           <div>
-            <h4 className="text-lg font-semibold mb-5 text-white">Contacto</h4>
+            <h4 className="text-lg font-semibold mb-5 text-white">{dict.contact_title}</h4>
             <ul className="space-y-3 text-white/80">
               <li className="flex items-center gap-3 text-[15px]">
                 <span className="text-xl">📧</span>
@@ -70,7 +78,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-8 text-center text-white/60">
-          <p className="text-[15px]">&copy; 2026 Sierra Negra. Todos los derechos reservados.</p>
+          <p className="text-[15px]">{dict.rights}</p>
         </div>
       </div>
     </footer>

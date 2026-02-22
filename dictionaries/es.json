@@ -1,0 +1,442 @@
+{
+  "header": {
+    "title": "Sierra Negra",
+    "links": {
+      "inicio": "Inicio",
+      "lugares": "Lugares",
+      "rutas": "Rutas",
+      "galeria": "Galería",
+      "video": "Video",
+      "sugerencias": "Sugerencias",
+      "tienda": "Tienda",
+      "carrito": "Carrito"
+    }
+  },
+  "cart": {
+    "title": "Tu Carrito",
+    "empty": "Tu carrito está vacío",
+    "empty_subtitle": "Parece que aún no has descubierto nuestros productos.",
+    "back_to_shop": "Volver a la tienda",
+    "remove": "Eliminar",
+    "total": "Total",
+    "checkout": "Proceder al Pago",
+    "taxes_hint": "Impuestos calculados en el checkout"
+  },
+  "hero": {
+    "slides": {
+      "1": {
+        "name": "Sierra Negra",
+        "description": "Un paraíso natural lleno de paisajes impresionantes y experiencias inolvidables."
+      },
+      "2": {
+        "name": "El Tepeyac",
+        "description": "Observa uno de los rios mas importantes de la sierra negra."
+      },
+      "3": {
+        "name": "Zoquitlan",
+        "description": "Un lugar lleno de historia y tradiciones que te harán sentir parte de la cultura local."
+      },
+      "4": {
+        "name": "San Juan Cuautla",
+        "description": "Camina entre árboles centenarios y descubre la magia de la naturaleza virgen."
+      },
+      "5": {
+        "name": "Cacaloc Zoquitlan",
+        "description": "El punto más alto de la sierra. Una caminata desafiante con recompensas increíbles."
+      },
+      "6": {
+        "name": "San Miguel Eloxochitlan",
+        "description": "Un lugar de mucha naturaleza y paz, ideal para desconectarte del mundo y reconectar contigo mismo."
+      }
+    },
+    "explore": "Explorar",
+    "prev": "Slide anterior",
+    "next": "Slide siguiente"
+  },
+  "places": {
+    "tag": "Destinos Inolvidables",
+    "title": "Lugares",
+    "accent": "Mágicos",
+    "description": "Descubre los rincones más impresionantes que la Sierra Negra tiene para ofrecer, donde la naturaleza cobra vida.",
+    "explore": "Explorar Destino",
+    "items": {
+      "1": {
+        "name": "Mirador del Cielo",
+        "description": "Una vista panorámica que te dejará sin aliento. Observa el amanecer desde las alturas.",
+        "features": [
+          "Vista panorámica",
+          "Amanecer",
+          "Fotografía"
+        ]
+      },
+      "2": {
+        "name": "Cascada Esmeralda",
+        "description": "Agua cristalina cayendo entre la vegetación exuberante. Un oasis de paz y frescura.",
+        "features": [
+          "Cascada",
+          "Naturaleza",
+          "Relajación"
+        ]
+      },
+      "3": {
+        "name": "Bosque Encantado",
+        "description": "Camina entre árboles centenarios y descubre la magia de la naturaleza virgen.",
+        "features": [
+          "Senderismo",
+          "Flora",
+          "Aventura"
+        ]
+      },
+      "4": {
+        "name": "Lago de los Cisnes",
+        "description": "Un espejo de agua tranquilo donde la naturaleza se refleja en perfecta armonía.",
+        "features": [
+          "Lago",
+          "Fauna",
+          "Paz"
+        ]
+      },
+      "5": {
+        "name": "Cueva de Cristales",
+        "description": "Explora formaciones geológicas únicas en esta cueva natural llena de misterio.",
+        "features": [
+          "Geología",
+          "Exploración",
+          "Aventura"
+        ]
+      },
+      "6": {
+        "name": "Pico del Águila",
+        "description": "El punto más alto de la sierra. Una caminata desafiante con recompensas increíbles.",
+        "features": [
+          "Montañismo",
+          "Vista",
+          "Desafío"
+        ]
+      }
+    }
+  },
+  "routes": {
+    "tag": "Rutas y Senderos",
+    "title": "Aventuras a",
+    "accent": "Pie",
+    "description": "Explora los senderos más emblemáticos de la Sierra Negra, diseñados para todos los niveles de aventura.",
+    "explore": "Ver Detalles",
+    "difficulty_label": {
+      "Fácil": "Fácil",
+      "Moderada": "Moderada",
+      "Difícil": "Difícil"
+    },
+    "items": {
+      "1": {
+        "name": "Ruta del Amanecer",
+        "description": "Una caminata matutina perfecta para ver el amanecer desde el mirador.",
+        "highlights": [
+          "Amanecer espectacular",
+          "Vista panorámica",
+          "Fotografía"
+        ],
+        "duration": "3-4 horas",
+        "distance": "8 km"
+      },
+      "2": {
+        "name": "Sendero del Bosque",
+        "description": "Ideal para familias. Camina entre árboles y disfruta de la naturaleza.",
+        "highlights": [
+          "Familiar",
+          "Naturaleza",
+          "Relajante"
+        ],
+        "duration": "2 horas",
+        "distance": "5 km"
+      },
+      "3": {
+        "name": "Ascenso al Pico",
+        "description": "Para los más aventureros. Llega a la cima y disfruta de vistas inigualables.",
+        "highlights": [
+          "Desafiante",
+          "Vista 360°",
+          "Logro personal"
+        ],
+        "duration": "6-8 horas",
+        "distance": "15 km"
+      },
+      "4": {
+        "name": "Circuito de las Cascadas",
+        "description": "Visita múltiples cascadas y pozas naturales en un solo recorrido.",
+        "highlights": [
+          "Cascadas",
+          "Nado",
+          "Diversión"
+        ],
+        "duration": "4-5 horas",
+        "distance": "10 km"
+      },
+      "5": {
+        "name": "Ruta Nocturna",
+        "description": "Explora la sierra bajo las estrellas con guías especializados.",
+        "highlights": [
+          "Astronomía",
+          "Naturaleza nocturna",
+          "Experiencia única"
+        ],
+        "duration": "2 horas",
+        "distance": "4 km"
+      },
+      "6": {
+        "name": "Travesía Completa",
+        "description": "La ruta más completa. Acampa bajo las estrellas y vive la aventura completa.",
+        "highlights": [
+          "Acampada",
+          "Aventura",
+          "Experiencia completa"
+        ],
+        "duration": "2 días",
+        "distance": "30 km"
+      }
+    }
+  },
+  "gallery": {
+    "tag": "Nuestra Galería",
+    "title": "Momentos",
+    "accent": "Capturados",
+    "description": "Una colección visual de la belleza natural y cultural de la Sierra Negra.",
+    "view_gallery": "Ver Galería",
+    "destination": "Destino",
+    "groups": {
+      "eloxochitlan": {
+        "name": "Eloxochitlán",
+        "description": "Tierra de nubes y cafetales de altura.",
+        "images": {
+          "1": {
+            "title": "San Miguel Eloxochitlán",
+            "description": "Vista aérea de la joya de la sierra."
+          },
+          "101": {
+            "title": "Cafetales al Amanecer",
+            "description": "El origen de nuestro sabor."
+          }
+        }
+      },
+      "zoquitlan": {
+        "name": "Zoquitlán",
+        "description": "Cuna de tradiciones y paisajes infinitos.",
+        "images": {
+          "5": {
+            "title": "Centro de Zoquitlán",
+            "description": "Historia viva en cada rincón."
+          },
+          "7": {
+            "title": "Cacaloc",
+            "description": "El punto más alto de la Sierra Negra."
+          },
+          "4": {
+            "title": "Río El Tepeyac",
+            "description": "Aguas cristalinas que dan vida a la región."
+          }
+        }
+      },
+      "crucero": {
+        "name": "El Crucero",
+        "description": "Intersección natural entre valles y montañas.",
+        "images": {
+          "1": {
+            "title": "Mirador del Crucero",
+            "description": "Donde las nubes tocan la tierra."
+          },
+          "2": {
+            "title": "Sendero de Montaña",
+            "description": "Caminos que cuentan historias."
+          },
+          "3": {
+            "title": "Bosque de Niebla",
+            "description": "Misterio y naturaleza en estado puro."
+          }
+        }
+      },
+      "coyomeapan": {
+        "name": "Coyomeapan",
+        "description": "El corazón profundo de la Sierra Negra.",
+        "images": {
+          "1": {
+            "title": "San Juan Cuautla",
+            "description": "Paz y serenidad en las faldas de la montaña."
+          }
+        }
+      }
+    }
+  },
+  "video": {
+    "tag": "Experiencia Inmersiva",
+    "title": "Siente la",
+    "accent": "Naturaleza",
+    "description": "Sumérgete en un viaje visual por los rincones más profundos de nuestra sierra.",
+    "error_loading": "No se pudo cargar el video",
+    "not_supported": "Tu navegador no soporta el elemento de video.",
+    "watch_video": "Ver Video"
+  },
+  "suggestions": {
+    "tag": "Recomendaciones",
+    "title": "Sugerencias y",
+    "accent": "Consejos",
+    "description": "Prepárate para una experiencia segura y memorable con nuestras recomendaciones esenciales.",
+    "all": "Todos",
+    "items": {
+      "1": {
+        "category": "Equipamiento",
+        "title": "Lleva ropa cómoda",
+        "description": "Usa ropa de senderismo y zapatos adecuados. Las capas son importantes para cambios de temperatura."
+      },
+      "2": {
+        "category": "Seguridad",
+        "title": "Hidratación constante",
+        "description": "Lleva suficiente agua. Se recomienda al menos 2 litros por persona para rutas de más de 3 horas."
+      },
+      "3": {
+        "category": "Fotografía",
+        "title": "Mejor hora para fotos",
+        "description": "El amanecer y atardecer ofrecen la mejor iluminación. Evita el mediodía para mejores resultados."
+      },
+      "4": {
+        "category": "Naturaleza",
+        "title": "Respeta el entorno",
+        "description": "No dejes basura, no arranques plantas y mantén distancia con la fauna silvestre."
+      },
+      "5": {
+        "category": "Planificación",
+        "title": "Revisa el clima",
+        "description": "Consulta el pronóstico antes de salir. Las condiciones pueden cambiar rápidamente en la montaña."
+      },
+      "6": {
+        "category": "Grupos",
+        "title": "No vayas solo",
+        "description": "Es más seguro explorar en grupo. Si vas solo, informa a alguien de tu ruta y hora estimada de regreso."
+      }
+    }
+  },
+  "footer": {
+    "description": "Descubre la belleza natural de la Sierra Negra. Una experiencia única en contacto con la naturaleza.",
+    "links_title": "Enlaces Rápidos",
+    "contact_title": "Contacto",
+    "rights": "© 2026 Sierra Negra. Todos los derechos reservados."
+  },
+  "shop": {
+    "hero": {
+      "title": "Sabores de Altura",
+      "subtitle": "Sabores auténticos de la Sierra Negra, directo a tu mesa.",
+      "tag": "Catálogo 2026"
+    },
+    "filters": {
+      "all": "Todos",
+      "search": "Buscar...",
+      "results": "RESULTADOS",
+      "no_results": "No encontramos lo que buscas.",
+      "clear": "Limpiar filtros",
+      "from": "de"
+    },
+    "categories": {
+      "Todos": "Todos",
+      "Frutas": "Frutas",
+      "Bebidas": "Bebidas",
+      "Especias": "Especias",
+      "Mermeladas": "Mermeladas",
+      "Granos": "Granos"
+    },
+    "ui": {
+      "no_image": "Sin imagen",
+      "add_to_cart": "Agregar al carrito",
+      "add": "Agregar",
+      "buy_now": "Comprar Ahora",
+      "close": "Cerrar",
+      "fresh": "Fresco",
+      "description": "Descripción",
+      "fast_delivery": "Entrega Rápida",
+      "fast_delivery_hint": "En 24-48 horas",
+      "warranty": "Garantía",
+      "warranty_hint": "Frescura total"
+    },
+    "products": {
+      "z1": {
+        "name": "Durazno Criollo de Zoquitlán",
+        "description": "Durazno dulce y jugoso, cultivado en las tierras altas de Zoquitlán. Ideal para mermeladas o consumo fresco."
+      },
+      "z2": {
+        "name": "Aguacate Criollo Pequeño",
+        "description": "Aguacate de cáscara comestible, sabor intenso y textura cremosa. Conocido localmente como 'pagua' o 'aguacatillo'."
+      },
+      "c1": {
+        "name": "Manzana Golden de Coyomeapan",
+        "description": "Manzana crujiente y aromática, cultivada en la niebla de Coyomeapan. Perfecta para postres."
+      },
+      "e1": {
+        "name": "Café de Altura Eloxochitlán",
+        "description": "Café arábica de estricta altura, con notas a chocolate y cítricos. Tostado medio artesanal."
+      },
+      "e2": {
+        "name": "Canela en Rama Orgánica",
+        "description": "Canela recién cosechada, aroma intenso y dulce. Varitas largas seleccionadas a mano."
+      },
+      "e3": {
+        "name": "Mermelada de Naranja Casera",
+        "description": "Elaborada con naranjas locales y azúcar de caña. Sin conservadores artificiales."
+      },
+      "e4": {
+        "name": "Frijol Negro de la Sierra",
+        "description": "Frijol negro nativo, de cocción rápida y caldo espeso. Sabor inigualable."
+      },
+      "e5": {
+        "name": "Chile Seco Ahumado",
+        "description": "Chile secado al sol y ahumado con leña de encino. Picor medio y gran aroma."
+      }
+    }
+  },
+  "checkout": {
+    "steps": {
+      "shipping": "Envío",
+      "payment": "Pago",
+      "ready": "Listo"
+    },
+    "empty": {
+      "title": "Tu carrito está vacío",
+      "subtitle": "Parece que aún no has agregado productos de nuestra sierra.",
+      "button": "Explorar Productos"
+    },
+    "shipping": {
+      "title": "Información de Envío",
+      "name": "Nombre Completo",
+      "zip": "Código Postal",
+      "state": "Estado",
+      "address": "Dirección exacta",
+      "phone": "Teléfono",
+      "phone_hint": "Para contactarte en la entrega (10 dígitos)",
+      "continue": "Continuar al Pago"
+    },
+    "payment": {
+      "title": "Detalles de Pago",
+      "card_number": "Número de tarjeta",
+      "card_holder": "Nombre del titular",
+      "card_holder_hint": "Como aparece en la tarjeta",
+      "expiration": "Expiración",
+      "cvv": "CVV / CVC",
+      "cvv_hint": "3 dígitos al reverso",
+      "secure": "Pagos encriptados de extremo a extremo",
+      "back": "Volver",
+      "pay": "Pagar",
+      "processing": "Procesando pago..."
+    },
+    "success": {
+      "title": "¡Gracias por tu compra!",
+      "subtitle": "Tu pedido ha sido confirmado. Hemos enviado un correo electrónico con los detalles de tu orden y el número de guía.",
+      "order_id": "ID NO. PEDIDO",
+      "button": "Volver a la tienda"
+    },
+    "summary": {
+      "title": "Resumen del Pedido",
+      "quantity": "Cantidad",
+      "subtotal": "Subtotal",
+      "shipping_cost": "Envío",
+      "free": "Gratis",
+      "total": "Total"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import "./globals.css";
-import { CartProvider } from "../components/CartContext";
-import Header from "../components/Header";
-import CartDrawer from "../components/CartDrawer";
+import "../globals.css";
+import { CartProvider } from "../../components/CartContext";
+import Header from "../../components/Header";
+import CartDrawer from "../../components/CartDrawer";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -74,19 +74,30 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+import { getDictionary } from "../dictionaries";
+
+export async function generateStaticParams() {
+  return [{ lang: 'es' }, { lang: 'en' }]
+}
+
+export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: Promise<{ lang: string }>;
 }>) {
+  const { lang } = await params;
+  const dict = await getDictionary(lang as 'es' | 'en');
+
   return (
-    <html lang="es">
+    <html lang={lang}>
       <body
         className={`${outfit.variable} antialiased`}
       >
         <CartProvider>
-          <Header />
-          <CartDrawer />
+          <Header lang={lang as 'es' | 'en'} dict={dict.header} />
+          <CartDrawer lang={lang as 'es' | 'en'} dict={dict.cart} />
           <div style={{ paddingTop: 'var(--header-height)' }}>{children}</div>
         </CartProvider>
       </body>

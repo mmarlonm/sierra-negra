@@ -4,7 +4,60 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useCart } from "./CartContext";
 
-export default function Checkout() {
+interface CheckoutProps {
+  lang: 'es' | 'en';
+  dict: {
+    steps: {
+      shipping: string;
+      payment: string;
+      ready: string;
+    };
+    empty: {
+      title: string;
+      subtitle: string;
+      button: string;
+    };
+    shipping: {
+      title: string;
+      name: string;
+      zip: string;
+      state: string;
+      address: string;
+      phone: string;
+      phone_hint: string;
+      continue: string;
+    };
+    payment: {
+      title: string;
+      card_number: string;
+      card_holder: string;
+      card_holder_hint: string;
+      expiration: string;
+      cvv: string;
+      cvv_hint: string;
+      secure: string;
+      back: string;
+      pay: string;
+      processing: string;
+    };
+    success: {
+      title: string;
+      subtitle: string;
+      order_id: string;
+      button: string;
+    };
+    summary: {
+      title: string;
+      quantity: string;
+      subtotal: string;
+      shipping_cost: string;
+      free: string;
+      total: string;
+    };
+  };
+}
+
+export default function Checkout({ lang, dict }: CheckoutProps) {
   const { items, total, clearCart } = useCart();
   const [step, setStep] = useState(1); // 1: Datos, 2: Pago, 3: Éxito
   const [loading, setLoading] = useState(false);
@@ -53,10 +106,10 @@ export default function Checkout() {
        <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-pulse">
          <span className="text-4xl">🛒</span>
        </div>
-       <h2 className="text-3xl font-bold text-[#2D5016] mb-2">Tu carrito está vacío</h2>
-       <p className="text-gray-500 text-lg mb-8 max-w-md">Parece que aún no has agregado productos de nuestra sierra.</p>
-       <a href="/sierra-negra#products" className="bg-[#2D5016] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#3d6b1f] hover:shadow-lg hover:shadow-green-900/20 transition-all transform hover:-translate-y-1">
-         Explorar Productos
+       <h2 className="text-3xl font-bold text-[#2D5016] mb-2">{dict.empty.title}</h2>
+       <p className="text-gray-500 text-lg mb-8 max-w-md">{dict.empty.subtitle}</p>
+       <a href={`/${lang}/#products`} className="bg-[#2D5016] text-white px-8 py-3 rounded-full font-semibold hover:bg-[#3d6b1f] hover:shadow-lg hover:shadow-green-900/20 transition-all transform hover:-translate-y-1">
+         {dict.empty.button}
        </a>
      </div>
   );
@@ -80,7 +133,7 @@ export default function Checkout() {
                    {s < step ? '✓' : s}
                  </div>
                  <span className={`text-xs font-semibold uppercase tracking-wider ${step >= s ? 'text-[#2D5016]' : 'text-gray-400'}`}>
-                   {s === 1 ? 'Envío' : s === 2 ? 'Pago' : 'Listo'}
+                   {s === 1 ? dict.steps.shipping : s === 2 ? dict.steps.payment : dict.steps.ready}
                  </span>
                </div>
              ))}
@@ -100,12 +153,12 @@ export default function Checkout() {
                 <div className="p-8 lg:p-12 animate-fade-in-up">
                   <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
                     <span className="bg-green-100 text-[#2D5016] p-2 rounded-lg text-xl">📍</span>
-                    Información de Envío
+                    {dict.shipping.title}
                   </h2>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                      <div className="md:col-span-2 space-y-2">
-                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">Nombre Completo</label>
+                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">{dict.shipping.name}</label>
                        <input 
                          className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all" 
                          placeholder="Ej. Juan Pérez"
@@ -115,7 +168,7 @@ export default function Checkout() {
                      </div>
                      
                      <div className="space-y-2">
-                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">Código Postal</label>
+                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">{dict.shipping.zip}</label>
                        <input 
                           className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all" 
                           placeholder="Ej. 75700"
@@ -124,7 +177,7 @@ export default function Checkout() {
                        />
                      </div>
                      <div className="space-y-2">
-                        <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">Estado</label>
+                        <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">{dict.shipping.state}</label>
                         <select 
                           className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all text-gray-600"
                           value={shippingState}
@@ -133,25 +186,25 @@ export default function Checkout() {
                           <option>Puebla</option>
                           <option>Veracruz</option>
                           <option>Oaxaca</option>
-                          <option>Otro</option>
+                          <option>{lang === 'es' ? 'Otro' : 'Other'}</option>
                         </select>
                      </div>
 
                      <div className="md:col-span-2 space-y-2">
-                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">Dirección exacta</label>
+                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">{dict.shipping.address}</label>
                        <input 
                           className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all" 
-                          placeholder="Calle, número, colonia..."
+                          placeholder={lang === 'es' ? "Calle, número, colonia..." : "Street, number, neighborhood..."}
                           value={shippingAddress}
                           onChange={(e) => setShippingAddress(e.target.value)}
                        />
                      </div>
 
                      <div className="md:col-span-2 space-y-2">
-                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">Teléfono</label>
+                       <label className="text-xs font-bold uppercase text-gray-400 tracking-wider ml-1">{dict.shipping.phone}</label>
                        <input 
                           className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all" 
-                          placeholder="Para contactarte en la entrega (10 dígitos)"
+                          placeholder={dict.shipping.phone_hint}
                           value={shippingPhone}
                           onChange={(e) => setShippingPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
                        />
@@ -164,7 +217,7 @@ export default function Checkout() {
                       disabled={!isShippingValid}
                       className={`group bg-[#2D5016] text-white px-8 py-4 rounded-xl font-bold hover:bg-[#3d6b1f] hover:shadow-lg hover:shadow-green-900/20 transition-all flex items-center gap-3 ${!isShippingValid ? 'opacity-50 cursor-not-allowed grayscale' : ''}`}
                     >
-                      Continuar al Pago
+                      {dict.shipping.continue}
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                     </button>
                   </div>
@@ -175,7 +228,7 @@ export default function Checkout() {
                 <div className="p-8 lg:p-12 animate-fade-in-up">
                   <h2 className="text-2xl font-bold text-gray-800 mb-8 flex items-center gap-3">
                     <span className="bg-green-100 text-[#2D5016] p-2 rounded-lg text-xl">💳</span>
-                    Detalles de Pago
+                    {dict.payment.title}
                   </h2>
 
                   <div className="flex flex-col lg:flex-row gap-12 items-start">
@@ -204,11 +257,11 @@ export default function Checkout() {
 
                             <div className="flex justify-between items-end relative z-10">
                               <div>
-                                <div className="text-[9px] uppercase opacity-70 mb-0.5 tracking-widest">Titular</div>
-                                <div className="text-sm font-medium uppercase tracking-wide text-white/90 truncate max-w-[180px]">{cardName || "NOMBRE Y APELLIDO"}</div>
+                                <div className="text-[9px] uppercase opacity-70 mb-0.5 tracking-widest">{lang === 'es' ? 'Titular' : 'Holder'}</div>
+                                <div className="text-sm font-medium uppercase tracking-wide text-white/90 truncate max-w-[180px]">{cardName || (lang === 'es' ? "NOMBRE Y APELLIDO" : "FULL NAME")}</div>
                               </div>
                               <div>
-                                <div className="text-[9px] uppercase opacity-70 mb-0.5 tracking-widest text-right">Expira</div>
+                                <div className="text-[9px] uppercase opacity-70 mb-0.5 tracking-widest text-right">{lang === 'es' ? 'Expira' : 'Expires'}</div>
                                 <div className="text-sm font-mono text-white/90">{expDate || "MM/AA"}</div>
                               </div>
                             </div>
@@ -221,7 +274,7 @@ export default function Checkout() {
                               <div className="bg-white h-10 rounded-sm flex items-center justify-end px-3 bg-[url('https://www.transparenttextures.com/patterns/diagmonds-light.png')]">
                                 <span className="font-mono text-gray-800 font-bold text-lg tracking-widest">{cvv || "•••"}</span>
                               </div>
-                              <p className="text-[10px] text-white/50 mt-2 text-right">Código de seguridad (CVV)</p>
+                              <p className="text-[10px] text-white/50 mt-2 text-right">{dict.payment.cvv_hint}</p>
                             </div>
                             <div className="absolute bottom-6 right-6 opacity-30">
                                <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
@@ -231,7 +284,7 @@ export default function Checkout() {
                       
                       <div className="mt-8 text-center space-y-2">
                          <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
-                           <span>🔒 Pagos encriptados de extremo a extremo</span>
+                           <span>🔒 {dict.payment.secure}</span>
                          </div>
                       </div>
                     </div>
@@ -239,7 +292,7 @@ export default function Checkout() {
                     {/* Pay Form */}
                     <div className="w-full lg:w-1/2 space-y-6">
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">Número de tarjeta</label>
+                        <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">{dict.payment.card_number}</label>
                         <div className="relative">
                            <input 
                              className="w-full p-4 pl-12 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all font-mono text-gray-700 shadow-sm placeholder:text-gray-300" 
@@ -258,10 +311,10 @@ export default function Checkout() {
                       </div>
 
                       <div className="space-y-1.5">
-                        <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">Nombre del titular</label>
+                        <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">{dict.payment.card_holder}</label>
                         <input 
                           className="w-full p-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all shadow-sm placeholder:text-gray-300" 
-                          placeholder="Como aparece en la tarjeta"
+                          placeholder={dict.payment.card_holder_hint}
                           value={cardName}
                           onChange={(e) => setCardName(e.target.value.toUpperCase())}
                           onFocus={() => setFlipped(false)}
@@ -270,7 +323,7 @@ export default function Checkout() {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-1.5">
-                           <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">Expiración</label>
+                           <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">{dict.payment.expiration}</label>
                            <input 
                              className="w-full p-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#2D5016] focus:border-transparent outline-none transition-all text-center font-mono shadow-sm placeholder:text-gray-300" 
                              placeholder="MM/AA"
@@ -285,7 +338,7 @@ export default function Checkout() {
                            />
                         </div>
                         <div className="space-y-1.5">
-                           <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">CVV / CVC</label>
+                           <label className="text-xs font-bold uppercase text-gray-500 tracking-wider ml-1">{dict.payment.cvv}</label>
                            <div className="relative">
                              <input 
                                type="text"
@@ -297,14 +350,14 @@ export default function Checkout() {
                                onFocus={() => setFlipped(true)}
                                onBlur={() => setFlipped(false)}
                              />
-                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 text-xs cursor-help" title="3 dígitos al reverso">?</span>
+                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 text-xs cursor-help" title={dict.payment.cvv_hint}>?</span>
                            </div>
                         </div>
                       </div>
 
                       <div className="pt-8 flex justify-between items-center bg-gray-50 -mx-8 -mb-8 lg:-mx-12 lg:-mb-12 p-8 lg:p-12 border-t border-gray-100 rounded-b-3xl mt-4">
                          <button onClick={() => setStep(1)} className="text-gray-500 hover:text-[#2D5016] font-medium transition-colors px-4 flex items-center gap-2">
-                           ← Volver
+                           ← {dict.payment.back}
                          </button>
                          <button 
                            onClick={handlePay} 
@@ -314,11 +367,11 @@ export default function Checkout() {
                            {loading ? (
                              <>
                                <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"/> 
-                               Procesando pago...
+                               {dict.payment.processing}
                              </>
                            ) : (
                              <>
-                               Pagar <span className="text-green-200 bg-white/10 px-2 py-0.5 rounded text-sm">${total.toFixed(2)}</span>
+                               {dict.payment.pay} <span className="text-green-200 bg-white/10 px-2 py-0.5 rounded text-sm">${total.toFixed(2)}</span>
                              </>
                            )}
                          </button>
@@ -334,19 +387,19 @@ export default function Checkout() {
                      <span className="text-5xl text-[#2D5016] relative z-10">✓</span>
                      <div className="absolute inset-0 bg-green-200 rounded-full animate-ping opacity-20"></div>
                    </div>
-                   <h2 className="text-3xl font-bold text-gray-800 mb-4">¡Gracias por tu compra!</h2>
+                   <h2 className="text-3xl font-bold text-gray-800 mb-4">{dict.success.title}</h2>
                    <p className="text-gray-500 text-lg mb-8 max-w-lg mx-auto">
-                     Tu pedido ha sido confirmado. Hemos enviado un correo electrónico con los detalles de tu orden y el número de guía.
+                     {dict.success.subtitle}
                    </p>
                      <div className="bg-gray-50 p-6 rounded-2xl max-w-md mx-auto mb-8 border border-gray-100">
-                        <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">ID NO. PEDIDO</p>
+                        <p className="text-sm text-gray-400 uppercase tracking-widest font-bold mb-2">{dict.success.order_id}</p>
                         <p className="text-xl font-mono text-gray-800">{mounted ? orderId : '...'}</p>
                      </div>
                    <button 
                      onClick={() => window.location.reload()} 
                      className="bg-[#2D5016] text-white px-10 py-4 rounded-full font-bold hover:bg-[#3d6b1f] transition-all hover:shadow-xl hover:shadow-green-900/10"
                    >
-                     Volver a la tienda
+                     {dict.success.button}
                    </button>
                 </div>
               )}
@@ -357,7 +410,7 @@ export default function Checkout() {
           {step < 3 && (
             <div className="lg:col-span-12 xl:col-span-4">
                <div className="bg-white rounded-3xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 sticky top-32">
-                 <h3 className="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-100">Resumen del Pedido</h3>
+                 <h3 className="text-xl font-bold text-gray-800 mb-6 pb-4 border-b border-gray-100">{dict.summary.title}</h3>
                  
                  <div className="space-y-4 mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                    {items.map(i => (
@@ -370,7 +423,7 @@ export default function Checkout() {
                         </div>
                        <div className="flex-1">
                          <h4 className="text-sm font-medium text-gray-800 line-clamp-2">{i.name}</h4>
-                         <p className="text-xs text-gray-500 mt-1">Cantidad: {i.quantity}</p>
+                         <p className="text-xs text-gray-500 mt-1">{dict.summary.quantity}: {i.quantity}</p>
                        </div>
                        <div className="text-right">
                          <p className="text-sm font-bold text-gray-800">${(i.price * i.quantity).toFixed(2)}</p>
@@ -381,17 +434,17 @@ export default function Checkout() {
 
                  <div className="space-y-3 py-4 border-t border-gray-100">
                    <div className="flex justify-between text-gray-500 text-sm">
-                     <span>Subtotal</span>
+                     <span>{dict.summary.subtotal}</span>
                      <span>${total.toFixed(2)}</span>
                    </div>
                    <div className="flex justify-between text-gray-500 text-sm">
-                     <span>Envío</span>
-                     <span className="text-green-600 font-medium">Gratis</span>
+                     <span>{dict.summary.shipping_cost}</span>
+                     <span className="text-green-600 font-medium">{dict.summary.free}</span>
                    </div>
                  </div>
 
                  <div className="flex justify-between items-center pt-6 border-t border-gray-100 mt-2">
-                   <span className="text-lg font-bold text-gray-800">Total</span>
+                   <span className="text-lg font-bold text-gray-800">{dict.summary.total}</span>
                    <span className="text-2xl font-bold text-[#2D5016]">${total.toFixed(2)}</span>
                  </div>
                </div>
